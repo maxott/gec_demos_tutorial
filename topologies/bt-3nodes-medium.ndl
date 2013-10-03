@@ -1,0 +1,137 @@
+<rdf:RDF
+    xmlns:compute="http://geni-orca.renci.org/owl/compute.owl#"
+    xmlns:kansei="http://geni-orca.renci.org/owl/kansei.owl#"
+    xmlns:ethernet="http://geni-orca.renci.org/owl/ethernet.owl#"
+    xmlns:dtn="http://geni-orca.renci.org/owl/dtn.owl#"
+    xmlns:time="http://www.w3.org/2006/time#"
+    xmlns:request="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:modify-schema="http://geni-orca.renci.org/owl/modify.owl#"
+    xmlns:openflow="http://geni-orca.renci.org/owl/openflow.owl#"
+    xmlns:planetlab="http://geni-orca.renci.org/owl/planetlab.owl#"
+    xmlns:layer="http://geni-orca.renci.org/owl/layer.owl#"
+    xmlns:geni="http://geni-orca.renci.org/owl/geni.owl#"
+    xmlns:request-schema="http://geni-orca.renci.org/owl/request.owl#"
+    xmlns:orca="http://geni-orca.renci.org/owl/orca.owl#"
+    xmlns:ip4="http://geni-orca.renci.org/owl/ip4.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:eucalyptus="http://geni-orca.renci.org/owl/eucalyptus.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:domain="http://geni-orca.renci.org/owl/domain.owl#"
+    xmlns:collections="http://geni-orca.renci.org/owl/collections.owl#"
+    xmlns:ec2="http://geni-orca.renci.org/owl/ec2.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:topology="http://geni-orca.renci.org/owl/topology.owl#" > 
+  <rdf:Description rdf:about="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#VLAN0-tracker-seeder-ip-192-168-1-1">
+    <ip4:netmask>255.255.255.0</ip4:netmask>
+    <layer:label_ID>192.168.1.1</layer:label_ID>
+    <rdf:type rdf:resource="http://geni-orca.renci.org/owl/ip4.owl#IPAddress"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#TermDuration">
+    <time:days rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1</time:days>
+    <rdf:type rdf:resource="http://www.w3.org/2006/time#DurationDescription"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#leecher-player-2">
+    <topology:hasInterface rdf:resource="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#VLAN0-leecher-player-2"/>
+    <request-schema:postBootScript rdf:datatype="http://www.w3.org/2001/XMLSchema#string">#!/bin/bash
+host=$self.Name()
+slice=$sliceName
+echo $host &gt; /etc/hostname
+/bin/hostname -F /etc/hostname
+echo "---
+:uid: $host-$slice
+:uri: xmpp://&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;:&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;@srv.mytestbed.net
+:environment: production
+:debug: false" &gt; /etc/omf_rc/config.yml
+/etc/init.d/omf_rc restart
+/etc/init.d/neuca stop</request-schema:postBootScript>
+    <compute:diskImage rdf:resource="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#deb7-64-p2p-v1"/>
+    <compute:specificCE rdf:resource="http://geni-orca.renci.org/owl/eucalyptus.owl#EucaC1Medium"/>
+    <domain:hasResourceType rdf:resource="http://geni-orca.renci.org/owl/compute.owl#VM"/>
+    <rdf:type rdf:resource="http://geni-orca.renci.org/owl/compute.owl#ComputeElement"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#VLAN0">
+    <topology:hasInterface rdf:resource="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#VLAN0-tracker-seeder"/>
+    <topology:hasInterface rdf:resource="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#VLAN0-leecher-player-1"/>
+    <topology:hasInterface rdf:resource="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#VLAN0-leecher-player-2"/>
+    <layer:atLayer rdf:resource="http://geni-orca.renci.org/owl/ethernet.owl#EthernetNetworkElement"/>
+    <rdf:type rdf:resource="http://geni-orca.renci.org/owl/topology.owl#BroadcastConnection"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#leecher-player-1">
+    <topology:hasInterface rdf:resource="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#VLAN0-leecher-player-1"/>
+    <request-schema:postBootScript rdf:datatype="http://www.w3.org/2001/XMLSchema#string">#!/bin/bash
+host=$self.Name()
+slice=$sliceName
+echo $host &gt; /etc/hostname
+/bin/hostname -F /etc/hostname
+echo "---
+:uid: $host-$slice
+:uri: xmpp://&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;:&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;@srv.mytestbed.net
+:environment: production
+:debug: false" &gt; /etc/omf_rc/config.yml
+/etc/init.d/omf_rc restart
+/etc/init.d/neuca stop</request-schema:postBootScript>
+    <compute:diskImage rdf:resource="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#deb7-64-p2p-v1"/>
+    <compute:specificCE rdf:resource="http://geni-orca.renci.org/owl/eucalyptus.owl#EucaC1Medium"/>
+    <domain:hasResourceType rdf:resource="http://geni-orca.renci.org/owl/compute.owl#VM"/>
+    <rdf:type rdf:resource="http://geni-orca.renci.org/owl/compute.owl#ComputeElement"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#VLAN0-leecher-player-2">
+    <ip4:localIPAddress rdf:resource="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#VLAN0-leecher-player-2-ip-192-168-1-3"/>
+    <rdf:type rdf:resource="http://geni-orca.renci.org/owl/topology.owl#Interface"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#VLAN0-leecher-player-2-ip-192-168-1-3">
+    <ip4:netmask>255.255.255.0</ip4:netmask>
+    <layer:label_ID>192.168.1.3</layer:label_ID>
+    <rdf:type rdf:resource="http://geni-orca.renci.org/owl/ip4.owl#IPAddress"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#VLAN0-leecher-player-1">
+    <ip4:localIPAddress rdf:resource="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#VLAN0-leecher-player-1-ip-192-168-1-2"/>
+    <rdf:type rdf:resource="http://geni-orca.renci.org/owl/topology.owl#Interface"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#tracker-seeder">
+    <topology:hasInterface rdf:resource="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#VLAN0-tracker-seeder"/>
+    <request-schema:postBootScript rdf:datatype="http://www.w3.org/2001/XMLSchema#string">#!/bin/bash
+host=$self.Name()
+slice=$sliceName
+echo $host &gt; /etc/hostname
+/bin/hostname -F /etc/hostname
+echo "---
+:uid: $host-$slice
+:uri: xmpp://&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;:&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;@srv.mytestbed.net
+:environment: production
+:debug: false" &gt; /etc/omf_rc/config.yml
+/etc/init.d/omf_rc restart
+/etc/init.d/neuca stop</request-schema:postBootScript>
+    <compute:diskImage rdf:resource="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#deb7-64-p2p-v1"/>
+    <compute:specificCE rdf:resource="http://geni-orca.renci.org/owl/eucalyptus.owl#EucaC1Medium"/>
+    <domain:hasResourceType rdf:resource="http://geni-orca.renci.org/owl/compute.owl#VM"/>
+    <rdf:type rdf:resource="http://geni-orca.renci.org/owl/compute.owl#ComputeElement"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#Term">
+    <time:hasDurationDescription rdf:resource="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#TermDuration"/>
+    <rdf:type rdf:resource="http://www.w3.org/2006/time#Interval"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#">
+    <collections:element rdf:resource="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#VLAN0"/>
+    <collections:element rdf:resource="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#leecher-player-1"/>
+    <collections:element rdf:resource="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#leecher-player-2"/>
+    <collections:element rdf:resource="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#tracker-seeder"/>
+    <request-schema:hasTerm rdf:resource="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#Term"/>
+    <rdf:type rdf:resource="http://geni-orca.renci.org/owl/request.owl#Reservation"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#VLAN0-tracker-seeder">
+    <ip4:localIPAddress rdf:resource="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#VLAN0-tracker-seeder-ip-192-168-1-1"/>
+    <rdf:type rdf:resource="http://geni-orca.renci.org/owl/topology.owl#Interface"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#VLAN0-leecher-player-1-ip-192-168-1-2">
+    <ip4:netmask>255.255.255.0</ip4:netmask>
+    <layer:label_ID>192.168.1.2</layer:label_ID>
+    <rdf:type rdf:resource="http://geni-orca.renci.org/owl/ip4.owl#IPAddress"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://geni-orca.renci.org/owl/b9259cf6-8e60-4c64-a29c-37621c0ee5dc#deb7-64-p2p-v1">
+    <topology:hasURL>http://pkg.mytestbed.net/geni/deb7-64-p2p-v1.xml</topology:hasURL>
+    <topology:hasGUID>3fde5386c582d47d96a1f3ee26effcab2bb79fc5</topology:hasGUID>
+    <rdf:type rdf:resource="http://geni-orca.renci.org/owl/compute.owl#DiskImage"/>
+  </rdf:Description>
+</rdf:RDF>

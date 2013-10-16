@@ -2,6 +2,7 @@ defProperty('slice', 'cdw', "slice name")
 defProperty('tracker', "1", "ID of tracker node")
 defProperty('leecher_player', "2,3", "List of leecher/player nodes")
 defProperty('seeder', "4,5", "List of seeder nodes")
+defProperty('upload', 2500, 'Maximum torrent upload speed in kb/s')
 
 tracker = "#{property.tracker.value}-#{property.slice.value}"
 leecher_player = property.leecher_player.value.split(',').map { |x| "#{x}-#{property.slice.value}" }
@@ -9,7 +10,7 @@ seeder = property.seeder.value.split(',').map { |x| "#{x}-#{property.slice.value
 
 defApplication('bttrack') do |app|
   app.description = 'Bittornado BT tracker'
-  app.binary_path = '/usr/bin/bttrack'
+  app.binary_path = 'killall -s9 bttrack; /usr/bin/bttrack'
   app.defProperty('dfile', 'Database file', '--dfile', {:type => :string})
   app.defProperty('port', 'Port number', '--port', {:type => :integer})  
 end
@@ -27,12 +28,6 @@ defApplication('transmission_daemon') do |app|
     mp.defMetric('percent_done', :double)
   end
 end
-
-# defApplication('transmission-remote') do |app|
-#   app.description = 'remote controller for transmission-daemon'
-#   app.binary_path = '/usr/local/bin/transmission-remote'
-#   app.defProperty('uplimit', 'Upload limit', '-u', {:type => :integer})
-# end
 
 defApplication('vlc') do |app|
   app.description = 'VideoLAN client media player'
@@ -74,7 +69,7 @@ defGroup('player', *leecher_player) do |g|
   end
 end
 
-onEvent(:ALL_UP_AND_INSTALLED) do |event|
+onEvent(:ALL_NODES_UP) do |event|
   group("leecher").exec("rm /root/Downloads/* /root/.config/transmission-daemon/resume/* /root/.config/transmission-daemon/torrents/*")
   after 5 do
     info "Starting tracker"
@@ -83,18 +78,19 @@ onEvent(:ALL_UP_AND_INSTALLED) do |event|
   after 10 do
    info "Starting seeders"
    group("seeder").startApplications
-  end
-  after 10 do
    info "Starting leechers"
    group("leecher").startApplications
   end
-  after 12 do
+  after 15 do
+    # set the upload speed limit
+    allGroups.exec("/usr/local/bin/transmission-remote -u #{property.upload.value}")
+  end
+  after 20 do
     info "Starting players"
     group("player").startApplications
   end
-  # big buck bunny playtime = 10m plus buffering
-  after 800 do
-    allGroups.stopApplications
+  after 110 do
+    allGroups.exec("killall -s9 bttrack; killall -s9 vlc; killall -s9 transmission-daemon")
     Experiment.done
   end
 end

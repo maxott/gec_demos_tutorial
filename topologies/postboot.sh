@@ -1,6 +1,5 @@
-#!/bin/bash
-host=$self.Name()
-slice=$sliceName
+host=$1
+slice=`ruby -e "print '$2'[/[^+]*$/]"`
 echo $host > /etc/hostname
 /bin/hostname -F /etc/hostname
 echo "---

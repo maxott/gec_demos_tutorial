@@ -1,4 +1,4 @@
-defProperty('slice', 'cdw', "slice name")
+defProperty('slice', 'oedl-', "slice name")
 defProperty('tracker', "1", "ID of tracker node")
 defProperty('leecher_player', "2,3", "List of leecher/player nodes")
 defProperty('seeder', "4", "List of seeder nodes")
@@ -16,7 +16,7 @@ defApplication('clean_all') do |app|
 end
 
 defApplication('clean_leechers') do |app|
-  app.description = 'Ensure that leechers do not have the video from a previous experiment run'
+  app.description = 'Ensure that leechers do not have the file to download'
   app.binary_path = 'rm -f /root/Downloads/* /root/.config/transmission-daemon/resume/* /root/.config/transmission-daemon/torrents/*'
   app.quiet = true
 end
@@ -127,11 +127,11 @@ defGraph 'Bittorrent' do |g|
   g.yaxis :legend => 'Completion', :ticks => {:format => 's'}
 end
 
-defGraph 'VLC Player' do |h|
-  h.ms('video').select {[ :oml_sender_id, :oml_seq, :oml_ts_server, :i_played_video_frames ]}
-  h.caption "VLC Player (frames played)"
-  h.type 'line_chart3'
-  h.mapping :x_axis => :oml_ts_server, :y_axis => :i_played_video_frames, :group_by => :oml_sender_id
-  h.xaxis :legend => 'time [s]'
-  h.yaxis :legend => 'Frames played', :ticks => {:format => 's'}
+defGraph 'VLC Player' do |g|
+  g.ms('video').select {[ :oml_sender_id, :oml_seq, :oml_ts_server, :i_played_video_frames ]}
+  g.caption "VLC Player (frames played)"
+  g.type 'line_chart3'
+  g.mapping :x_axis => :oml_ts_server, :y_axis => :i_played_video_frames, :group_by => :oml_sender_id
+  g.xaxis :legend => 'time [s]'
+  g.yaxis :legend => 'Frames played', :ticks => {:format => 's'}
 end

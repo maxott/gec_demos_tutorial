@@ -1,12 +1,12 @@
 defProperty('slice', 'cdw', "slice name")
 defProperty('tracker', "1", "ID of tracker node")
 defProperty('leecher_player', "2,3", "List of leecher/player nodes")
-defProperty('seeder', "4,5", "List of seeder nodes")
+defProperty('seeder', "4", "List of seeder nodes")
 defProperty('upload', 2500, 'Maximum torrent upload speed in kb/s')
 
 tracker = "#{property.tracker.value}-#{property.slice.value}"
-leecher_player = property.leecher_player.value.split(',').map { |x| "#{x}-#{property.slice.value}" }
-seeder = property.seeder.value.split(',').map { |x| "#{x}-#{property.slice.value}" }
+leecher_player = property.leecher_player.value.to_s.split(',').map { |x| "#{x}-#{property.slice.value}" }
+seeder = property.seeder.value.to_s.split(',').map { |x| "#{x}-#{property.slice.value}" }
 
 defApplication('bttrack') do |app|
   app.description = 'Bittornado BT tracker'
@@ -19,7 +19,6 @@ defApplication('transmission_daemon') do |app|
   app.description = 'bittorrent client with video streaming support'
   app.binary_path = 'killall -s9 transmission-daemon; rm /root/.config/transmission-daemon/settings.json; /usr/local/bin/transmission-daemon'
   app.defProperty('foreground', 'Run in foreground', '-f', {:type => :boolean})
-
   app.defMeasurement("stats") do |mp|
     mp.defMetric('tor_id', :int32)
     mp.defMetric('tor_name', :string)
@@ -89,7 +88,7 @@ onEvent(:ALL_NODES_UP) do |event|
     info "Starting players"
     group("player").startApplications
   end
-  after 110 do
+  after 120 do
     allGroups.exec("killall -s9 bttrack; killall -s9 vlc; killall -s9 transmission-daemon")
     Experiment.done
   end
@@ -104,11 +103,11 @@ defGraph 'Bittorrent' do |g|
   g.yaxis :legend => 'Completion', :ticks => {:format => 's'}
 end
 
-defGraph 'VLC Player' do |h|
-  h.ms('video').select {[ :oml_sender_id, :oml_seq, :oml_ts_server, :i_played_video_frames ]}
-  h.caption "VLC Player (frames played)"
-  h.type 'line_chart3'
-  h.mapping :x_axis => :oml_ts_server, :y_axis => :i_played_video_frames, :group_by => :oml_sender_id
-  h.xaxis :legend => 'time [s]'
-  h.yaxis :legend => 'Frames played', :ticks => {:format => 's'}
+defGraph 'VLC Player' do |g|
+  g.ms('video').select {[ :oml_sender_id, :oml_seq, :oml_ts_server, :i_played_video_frames ]}
+  g.caption "VLC Player (frames played)"
+  g.type 'line_chart3'
+  g.mapping :x_axis => :oml_ts_server, :y_axis => :i_played_video_frames, :group_by => :oml_sender_id
+  g.xaxis :legend => 'time [s]'
+  g.yaxis :legend => 'Frames played', :ticks => {:format => 's'}
 end

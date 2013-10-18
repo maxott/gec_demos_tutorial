@@ -1,7 +1,7 @@
 <rspec type="request" xsi:schemaLocation="http://www.geni.net/resources/rspec/3 http://www.geni.net/resources/rspec/3/request.xsd" xmlns:ns3="http://groups.geni.net/exogeni/attachment/wiki/RspecExtensions/slice-info/1" xmlns:flack="http://www.protogeni.net/resources/rspec/ext/flack/1" xmlns:client="http://www.protogeni.net/resources/rspec/ext/client/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.geni.net/resources/rspec/3">
   <node client_id="1" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>
@@ -13,7 +13,7 @@
   </node>
   <node client_id="2" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>
@@ -25,7 +25,7 @@
   </node>
   <node client_id="3" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>
@@ -37,7 +37,7 @@
   </node>
   <node client_id="4" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>
@@ -49,7 +49,7 @@
   </node>
   <node client_id="5" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>
@@ -61,7 +61,7 @@
   </node>
   <node client_id="6" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>
@@ -73,7 +73,7 @@
   </node>
   <node client_id="7" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>
@@ -85,7 +85,7 @@
   </node>
   <node client_id="8" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>
@@ -97,7 +97,7 @@
   </node>
   <node client_id="9" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>
@@ -109,7 +109,7 @@
   </node>
   <node client_id="10" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>
@@ -121,7 +121,7 @@
   </node>
   <node client_id="11" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>
@@ -133,7 +133,7 @@
   </node>
   <node client_id="12" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>
@@ -145,7 +145,7 @@
   </node>
   <node client_id="13" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>
@@ -157,7 +157,7 @@
   </node>
   <node client_id="14" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>
@@ -169,7 +169,7 @@
   </node>
   <node client_id="15" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>
@@ -181,7 +181,7 @@
   </node>
   <node client_id="16" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>
@@ -193,7 +193,7 @@
   </node>
   <node client_id="17" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>
@@ -205,7 +205,7 @@
   </node>
   <node client_id="18" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>
@@ -217,7 +217,7 @@
   </node>
   <node client_id="19" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>
@@ -229,7 +229,7 @@
   </node>
   <node client_id="20" component_manager_id="urn:publicid:IDN+exogeni.net+authority+am" exclusive="true">
     <sliver_type name="XOSmall">
-      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="59565a2e778d7791cf2847edca541110e08de501"/>
+      <disk_image name="http://pkg.mytestbed.net/geni/deb7-64-p2p.xml" version="807c4570e46413cba1faf3a25fdfff8361489c69"/>
     </sliver_type>
     <services>
       <execute command="chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName" shell="sh"/>

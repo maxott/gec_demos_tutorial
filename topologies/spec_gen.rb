@@ -5,7 +5,7 @@ puts '<rspec type="request" xsi:schemaLocation="http://www.geni.net/resources/rs
 nr.each {|n|
 	puts "  <node client_id=\"#{n}\" component_manager_id=\"urn:publicid:IDN+exogeni.net+authority+am\" exclusive=\"true\">
     <sliver_type name=\"XOSmall\">
-      <disk_image name=\"http://pkg.mytestbed.net/geni/deb7-64-p2p.xml\" version=\"59565a2e778d7791cf2847edca541110e08de501\"/>
+      <disk_image name=\"http://pkg.mytestbed.net/geni/deb7-64-p2p.xml\" version=\"807c4570e46413cba1faf3a25fdfff8361489c69\"/>
     </sliver_type>
     <services>
       <execute command=\"chmod +x /deb7-64-p2p.postboot.sh; /deb7-64-p2p.postboot.sh $self.Name() $sliceName\" shell=\"sh\"/>

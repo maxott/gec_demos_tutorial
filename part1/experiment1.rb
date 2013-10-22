@@ -22,9 +22,9 @@ defApplication('ping') do |app|
 end
 
 defGroup('First_Peer', property.resource1) do |g|
-  g.net.e1.ip = "192.168.1.1/24"
+  g.net.e1.ip = "192.168.1.2/24"
   g.addApplication("ping") do |app|
-    app.setProperty('target', '192.168.1.2')
+    app.setProperty('target', '192.168.1.3')
     app.setProperty('count', 10)
     app.measure('ping', :samples => 1)
     app.measure('rtt_stats', :samples => 1)
@@ -32,9 +32,9 @@ defGroup('First_Peer', property.resource1) do |g|
 end
  
 defGroup('Second_Peer', property.resource2) do |g|
-  g.net.e1.ip = "192.168.1.2/24"
+  g.net.e1.ip = "192.168.1.3/24"
   g.addApplication("ping") do |app|
-    app.setProperty('target', '192.168.1.1')
+    app.setProperty('target', '192.168.1.2')
     app.setProperty('count', 15)
     app.measure('ping', :samples => 1)
     app.measure('rtt_stats', :samples => 1)

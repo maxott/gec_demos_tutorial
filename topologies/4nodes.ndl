@@ -64,10 +64,12 @@ echo $host &gt; /etc/hostname
 /bin/hostname -F /etc/hostname
 echo "---
 :uid: $host-$slice
-:uri: xmpp://&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;:&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;@221.199.209.231
+:uri: xmpp://&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;:&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;@emmy9.casa.umass.edu
 :environment: production
 :debug: false" &gt; /etc/omf_rc/config.yml
-/etc/init.d/omf_rc restart</request-schema:postBootScript>
+until [[ `ifconfig eth1 | grep 192` ]]; do sleep 1; done
+/etc/init.d/omf_rc restart
+/etc/init.d/neuca stop</request-schema:postBootScript>
     <compute:diskImage rdf:resource="http://geni-orca.renci.org/owl/1d2d3e08-b1c5-4ba1-9ee6-aaa802633758#deb7-64-p2p"/>
     <compute:specificCE rdf:resource="http://geni-orca.renci.org/owl/exogeni.owl#XOSmall"/>
     <domain:hasResourceType rdf:resource="http://geni-orca.renci.org/owl/compute.owl#VM"/>

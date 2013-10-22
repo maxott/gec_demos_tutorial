@@ -1,7 +1,7 @@
-defProperty('slice', 'cdw_', "slice name")
+defProperty('slice', 'oedl-', "slice name")
 defProperty('tracker', "0", "ID of tracker node")
-defProperty('leecher_player', "1,2,3,4", "List of leecher/player nodes")
-defProperty('seeder', "5,6,7,8,9", "List of seeder nodes")
+defProperty('leecher_player', "1,2", "List of leecher/player nodes")
+defProperty('seeder', "5", "List of seeder nodes")
 defProperty('upload', 2500, 'Maximum torrent upload speed in kb/s')
 
 tracker = property.tracker.to_s.split(',').map { |x| "#{x}-#{property.slice}" }

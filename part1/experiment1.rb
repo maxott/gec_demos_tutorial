@@ -1,5 +1,5 @@
-defProperty('1-oedl-x', "your_resource_ID", "ID of a resource")
-defProperty('2-oedl-x', "your_resource_ID", "ID of a resource")
+defProperty('resource1', "your_resource_ID", "ID of a resource")
+defProperty('resource2', "your_resource_ID", "ID of a resource")
 
 defApplication('ping') do |app|
   app.description = 'Simple Definition for the ping-oml2 application'

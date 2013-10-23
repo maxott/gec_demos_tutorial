@@ -45,7 +45,7 @@ end
 
 defApplication('vlc') do |app|
   app.description = 'VideoLAN client media player'
-  app.binary_path = 'usr/local/bin/vlc.sh'
+  app.binary_path = '/usr/local/bin/vlc.sh'
   app.defProperty('vstream', 'URL to play stream from', nil, {:type => :string})
   app.quiet = true
   app.defMeasurement("video") do |mp|

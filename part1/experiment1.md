@@ -2,7 +2,7 @@
 
 ## Overview
 
-The objective of this first step is to show how to design, execute, and view the result of a very simple experiment using !LabWiki and OEDL.
+The objective of this first step is to show how to design, execute, and view the result of a very simple experiment using LabWiki and OEDL.
 
 The scenario of this simple experiment involves 2 computing resources (i.e. ExoGENI virtual machines), which will send ping probes to each other, and report the observed delays.
 
@@ -12,11 +12,11 @@ As mentioned [earlier](http://groups.geni.net/geni/wiki/GEC18Agenda/LabWikiAndOE
 
 ## Part 1 - Design/Setup 
 
-For help on all actions regarding !LabWiki, please refer to the [LabWiki and OEDL introduction page](http://groups.geni.net/geni/wiki/GEC18Agenda/LabWikiAndOEDL/Introduction)
+For help on all actions regarding LabWiki, please refer to the [LabWiki and OEDL introduction page](http://groups.geni.net/geni/wiki/GEC18Agenda/LabWikiAndOEDL/Introduction)
 
 **The OEDL experiment description**
 
-1. First, if you have not done it yet, login into !LabWiki
+1. First, if you have not done it yet, login into LabWiki
 2. Create a new experiment file with the name of your choice
 3. Cut-and-paste the following OEDL experiment description into that file, then save it
 
@@ -116,7 +116,7 @@ For help on all actions regarding !LabWiki, please refer to the [LabWiki and OED
   * then set the value of the 'resource1' property to *1-oedl-X*
   * and set the value of the 'resource2' property to *2-oedl-X*
 
-(You can optionally decide to give a name to your experiment, if not !LabWiki will assign a default unique name to it. The slice name is also optional for this tutorial)
+(You can optionally decide to give a name to your experiment, if not LabWiki will assign a default unique name to it. The slice name is also optional for this tutorial)
 
 <img src="https://raw.github.com/mytestbed/gec18-tutorial/master/part1/labwiki_exp1_2.png">
 

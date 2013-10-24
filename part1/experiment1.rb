@@ -68,4 +68,11 @@ defGraph 'RTT2' do |g|
   g.mapping :value => :avg, :label => :oml_sender_id
 end
 
-
+defGraph 'RTT3' do |g|
+  g.ms('ping').select {[ :oml_sender_id, :oml_ts_client, :oml_ts_server, :rtt ]}.where("rtt < 1")
+  g.caption "Histogram of RTT counts [ms]"
+  g.type 'histogram2'
+  g.mapping :value => :rtt, :group_by => :oml_sender_id
+  g.yaxis :legend => 'Count'
+  g.xaxis :legend => ' ', :ticks => {:format => ',.2f'}
+end

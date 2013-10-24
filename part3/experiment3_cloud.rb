@@ -1,7 +1,7 @@
 defProperty('slice', 'cloud', "slice name")
 defProperty('tracker', "12", "ID of tracker node")
-defProperty('leecher_player', "73,74,28,62,57,76,72,75,59", "List of leecher/player nodes")
-defProperty('seeder', "19,45,22,27,56,4,12,49,61,5", "List of seeder nodes")
+defProperty('leecher_player', "77,64,63,90,88,89,67,78,71,37,79,68,65,66,9,91,95,99,7,83,104,96,93,84,87,94,97,102,73,74,28,62,57", "List of leecher/player nodes")
+defProperty('seeder', "76,72,75,59,70,82,103,101,8,86,69,106,80,92,98,105,81,85,100,19,45,22,27,56,4,12,49,61,5", "List of seeder nodes")
 defProperty('upload', 2500, 'Maximum torrent upload speed in kb/s')
 
 tracker = property.tracker.to_s.split(',').map { |x| "#{x}-#{property.slice}" }
@@ -112,7 +112,7 @@ onEvent(:ALL_UP_AND_INSTALLED) do |event|
     info "Starting players"
     group("player").startApplications
   end
-  after 220 do
+  after 620 do
     group("all_resources").startApplications
     Experiment.done
   end

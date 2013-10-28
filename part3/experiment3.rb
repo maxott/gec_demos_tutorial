@@ -1,4 +1,4 @@
-defProperty('slice', 'gec18c', "slice name")
+defProperty('slice', 'oedl-', "slice name")
 defProperty('tracker', "0", "ID of tracker node")
 defProperty('leecher_player', "1,2,3,4", "List of leecher/player nodes")
 defProperty('seeder', "5,6,7,8,9", "List of seeder nodes")

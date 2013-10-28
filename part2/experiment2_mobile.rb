@@ -1,13 +1,16 @@
-defProperty('slice', 'oedl-', "slice name")
+defProperty('slice', 'android', "slice name")
 defProperty('tracker', "0", "ID of tracker node")
-defProperty('leecher_player', "1,2", "List of leecher/player nodes")
+defProperty('leecher', "1,9", "List of leecher/player nodes")
+defProperty('fixed_player', "1", "List of leecher/player nodes")
+defProperty('mobile_player', "nitos.android.s2", "List of leecher/player nodes")
 defProperty('seeder', "3", "List of seeder nodes")
 defProperty('upload', 2500, 'Maximum torrent upload speed in kb/s')
 
 tracker = property.tracker.to_s.split(',').map { |x| "#{x}-#{property.slice}" }
-leecher_player = property.leecher_player.to_s.split(',').map { |x| "#{x}-#{property.slice}" }
+leecher = property.leecher.to_s.split(',').map { |x| "#{x}-#{property.slice}" }
+fixed_player = property.fixed_player.to_s.split(',').map { |x| "#{x}-#{property.slice}" }
 seeder = property.seeder.value.to_s.split(',').map { |x| "#{x}-#{property.slice}" }
-allresources = tracker + leecher_player + seeder
+allresources = tracker + leecher + seeder + fixed_player
 
 defApplication('clean_all') do |app|
   app.description = 'Some commands to ensure that we start with a clean slate'
@@ -55,6 +58,24 @@ defApplication('vlc') do |app|
   end
 end
 
+defApplication('vlc_mobile') do |app|
+  app.description = 'VLC video player'
+  # Define the path to the binary executable for this application
+  app.binary_path = {package: 'org.videolan.vlc.betav7neon', action: 'ACTION_VIEW'}
+  # Define the configurable parameters for this application
+  app.defProperty("data_and_type", "Set the data for the intent along with an explicit MIME data type", "", {type: "INTENT"})
+  app.platform = 'android'
+end
+
+defGroup('mobile_player', property.mobile_player) do |g|
+  # Associate the application defined above to each resources
+  # in this group
+  g.addApplication("vlc_mobile") do |app|
+    # Configure the parameters of the application
+    app.setProperty('data_and_type', {:data => 'http://152.54.14.19:8080/big_buck_bunny_480p_stereo.avi?tor_url=http://192.168.1.1/big_buck_bunny_480p_stereo.avi.torrent', :type => 'application/mp4'})
+  end
+end  
+  
 defGroup('tracker', *tracker) do |g|
   g.addApplication("bttrack") do |app|
     app.setProperty('dfile', "/tmp/dfile_#{Time.now.to_i}")
@@ -69,14 +90,14 @@ defGroup('seeder', *seeder) do |g|
   end
 end
 
-defGroup('leecher', *leecher_player) do |g|
+defGroup('leecher', *leecher) do |g|
   g.addApplication("transmission_daemon") do |app|
     app.setProperty('foreground', true)
     app.measure('stats', :samples => 1)
   end
 end
 
-defGroup('player', *leecher_player) do |g|
+defGroup('fixed_player', *fixed_player) do |g|
   g.addApplication("vlc") do |app|
     app.setProperty('vstream', "http://localhost:8080/big_buck_bunny_480p_stereo.avi?tor_url=http://192.168.1.1/big_buck_bunny_480p_stereo.avi.torrent")
     app.measure('video', :samples => 1)
@@ -87,7 +108,7 @@ defGroup('all_resources', *allresources) do |g|
   g.addApplication("clean_all")
 end
 
-defGroup('all_leechers', *leecher_player) do |g|
+defGroup('all_leechers', *leecher) do |g|
   g.addApplication("clean_leechers")
 end
 
@@ -110,7 +131,8 @@ onEvent(:ALL_UP_AND_INSTALLED) do |event|
   end
   after 25 do
     info "Starting players"
-    group("player").startApplications
+    group("fixed_player").startApplications
+    group("mobile_player").startApplications
   end
   after 220 do
     group("all_resources").startApplications

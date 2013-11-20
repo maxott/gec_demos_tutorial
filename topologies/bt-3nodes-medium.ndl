@@ -40,7 +40,7 @@ echo $host &gt; /etc/hostname
 /bin/hostname -F /etc/hostname
 echo "---
 :uid: $host-$slice
-:uri: xmpp://&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;:&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;@srv.mytestbed.net
+:uri: xmpp://&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;:&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;@emmy9.casa.umass.edu
 :environment: production
 :debug: false" &gt; /etc/omf_rc/config.yml
 /etc/init.d/omf_rc restart
@@ -66,7 +66,7 @@ echo $host &gt; /etc/hostname
 /bin/hostname -F /etc/hostname
 echo "---
 :uid: $host-$slice
-:uri: xmpp://&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;:&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;@srv.mytestbed.net
+:uri: xmpp://&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;:&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;@emmy9.casa.umass.edu
 :environment: production
 :debug: false" &gt; /etc/omf_rc/config.yml
 /etc/init.d/omf_rc restart
@@ -98,7 +98,7 @@ echo $host &gt; /etc/hostname
 /bin/hostname -F /etc/hostname
 echo "---
 :uid: $host-$slice
-:uri: xmpp://&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;:&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;@srv.mytestbed.net
+:uri: xmpp://&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;:&lt;%= \"$host-$slice-#{Process.pid}\" %&gt;@emmy9.casa.umass.edu
 :environment: production
 :debug: false" &gt; /etc/omf_rc/config.yml
 /etc/init.d/omf_rc restart

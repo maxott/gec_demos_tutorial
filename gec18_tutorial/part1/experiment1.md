@@ -6,7 +6,7 @@ The objective of this first step is to show how to design, execute, and view the
 
 The scenario of this simple experiment involves 2 computing resources (i.e. ExoGENI virtual machines), which will send ping probes to each other, and report the observed delays.
 
-<img src="https://raw.github.com/mytestbed/gec18-tutorial/master/part1/exp1_overview.png">
+<img src="https://raw.github.com/mytestbed/gec_demos_tutorial/master/part1/exp1_overview.png">
 
 As mentioned [earlier](http://groups.geni.net/geni/wiki/GEC18Agenda/LabWikiAndOEDL#Pre-Requisites), the resources for this experiment have already been allocated and provisioned. Thus at this stage, you should have received the names of your allocated resource, if not please let the session presenters know. 
 
@@ -118,7 +118,7 @@ For help on all actions regarding LabWiki, please refer to the [LabWiki and OEDL
 
 1. After saving the above OEDL experiment description, drag-and-drop it from the "Prepare" column to the "Execute" column, as described on the [LabWiki introduction page]([http://groups.geni.net/geni/wiki/GEC18Agenda/LabWikiAndOEDL/Introduction#Execute)
 
-<img src="https://raw.github.com/mytestbed/gec18-tutorial/master/part1/labwiki_exp1_1.png">
+<img src="https://raw.github.com/mytestbed/gec_demos_tutorial/master/part1/labwiki_exp1_1.png">
 
 2. Set the values of the properties 'resource1' and 'resource2' according to the following:
   * if your pre-allocated slice as the number X
@@ -127,22 +127,22 @@ For help on all actions regarding LabWiki, please refer to the [LabWiki and OEDL
 
 (You can optionally decide to give a name to your experiment, if not LabWiki will assign a default unique name to it. The slice name is also optional for this tutorial)
 
-<img src="https://raw.github.com/mytestbed/gec18-tutorial/master/part1/labwiki_exp1_2.png">
+<img src="https://raw.github.com/mytestbed/gec_demos_tutorial/master/part1/labwiki_exp1_2.png">
 
 3. Click on the "Start Experiment" button. You will shortly see output messages under the "Logging" section. Some of these messages are from the OMF Experiment Controller, which is interpreting your OEDL experiment description and sending corresponding commands to the resources. Other messages are from the resources themselves (either the VM nodes or the applications), reporting on configuration and command results.
 
-<img src="https://raw.github.com/mytestbed/gec18-tutorial/master/part1/labwiki_exp1_3.png">
+<img src="https://raw.github.com/mytestbed/gec_demos_tutorial/master/part1/labwiki_exp1_3.png">
 
 4. If you scroll down below the "Logging" section or if you collapse it, you should see the graphs defined in the OEDL experiment description being drawn dynamically as measurements are collected from the resources.
 
-<img src="https://raw.github.com/mytestbed/gec18-tutorial/master/part1/labwiki_exp1_4.png">
+<img src="https://raw.github.com/mytestbed/gec_demos_tutorial/master/part1/labwiki_exp1_4.png">
 
 
 ## Part 3 - Finish
 
 1. A message in the "Execute" column will appear to inform you that the experiment execution has finished. At this stage, you should have the complete graphs for this experiment at the bottom of that column, which should look as follows.
 
-<img src="https://raw.github.com/mytestbed/gec18-tutorial/master/part1/labwiki_exp1_5.png">
+<img src="https://raw.github.com/mytestbed/gec_demos_tutorial/master/part1/labwiki_exp1_5.png">
 
 2. You may interact to with these graphs, e.g. tick or un-tick the legend's keys to display only results from the first or/and second resource, hover the pointer above a graph point to display the underlying data point, drag-and-drop the graph via its icon to the "Plan" column as [LabWiki introduction page](http://groups.geni.net/geni/wiki/GEC18Agenda/LabWikiAndOEDL/Introduction#Execute)
 

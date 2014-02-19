@@ -16,7 +16,7 @@ The scenario of this simple experiment involves 4 ExoGENI virtual machine resour
 * one resource will be a [tracker](http://en.wikipedia.org/wiki/BitTorrent#Operation), i.e. an entity that maintain a list of peers interested in the video file
 * two resources act as [leechers](http://en.wikipedia.org/wiki/BitTorrent#Operation),  i.e. a BitTorrent peer which are downloading the video file. These two leechers will run the modified BitTorrent transmission software, which includes the researcher's algorithm (aka SBT, Streaming BitTorrent). In addition, they will each also run a VLC player software, which will play the video as it is being received by the peer.  
 
-<img src="https://raw.github.com/mytestbed/gec18-tutorial/master/part2/exp2_overview.png">
+<img src="https://raw.github.com/mytestbed/gec_demos_tutorial/master/part2/exp2_overview.png">
 
 In this experiment scenario, we will collect the following measurements:
   * from the modified BitTorrent transmission client running on each peer, we will collect the upload rate, the download rate, and the percentage of completion for the video file
@@ -233,22 +233,22 @@ For help on all actions regarding LabWiki, please refer to the [LabWiki and OEDL
 
 2. Set the value of the property *slice* to the pre-allocated slice number which was assigned to you.
 
-<img src="https://raw.github.com/mytestbed/gec18-tutorial/master/part2/labwiki_exp2_1.png">
+<img src="https://raw.github.com/mytestbed/gec_demos_tutorial/master/part2/labwiki_exp2_1.png">
 
 3. Click on the "Start Experiment" button. You will shortly see output messages under the "Logging" section. Some of these messages are from the OMF Experiment Controller, which is interpreting your OEDL experiment description and sending corresponding commands to the resources. Other messages are from the resources themselves (either the VM nodes or the applications), reporting on configuration and command results. 
 
-<img src="https://raw.github.com/mytestbed/gec18-tutorial/master/part2/labwiki_exp2_3.png">
+<img src="https://raw.github.com/mytestbed/gec_demos_tutorial/master/part2/labwiki_exp2_3.png">
 
 4. If you scroll down below the "Logging" section or if you collapse it, you should see the graphs defined in the OEDL experiment description being drawn dynamically as measurements are collected from the resources.
 
-<img src="https://raw.github.com/mytestbed/gec18-tutorial/master/part2/labwiki_exp2_4.png">
+<img src="https://raw.github.com/mytestbed/gec_demos_tutorial/master/part2/labwiki_exp2_4.png">
 
 
 ## Part 3 - Finish
 
 1. A message in the "Execute" column will appear to inform you that the experiment execution has finished. At this stage, you should have the complete graphs for this experiment at the bottom of that column, which should look as follows.
 
-<img src="https://raw.github.com/mytestbed/gec18-tutorial/master/part2/labwiki_exp2_5.png">
+<img src="https://raw.github.com/mytestbed/gec_demos_tutorial/master/part2/labwiki_exp2_5.png">
 
 2. From these 2 graphs, we can see that as the video content is downloaded by the modified BitTorrent application on the leechers, the VLC players running on the same resources report a continuously increasing number of of frames being played. The relatively 'smooth' linear increase in these numbers indicate that the players never ran out of continuous frames to play. This demonstrate that the modified !BitTorrent application is suitable for video streaming.
 

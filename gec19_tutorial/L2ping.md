@@ -1,8 +1,9 @@
 #Example: Writing an OML Layer 2 Ping Application (aka pingPlus)#
 
 ##Prerequisites##
-Setup your experiment as shown here with the pingPlus package [link](http://www.gpolab.bbn.com/experiment-support/gec17/pingPlus/pingPlus_v3.tar.gz):
-http://groups.geni.net/geni/wiki/Tutorials/ICDCS2013/GettingStartedWithGENI_I/Procedure/DesignSetup
+Setup your experiment as shown here with this pingPlus package [link](http://www.gpolab.bbn.com/experiment-support/gec17/pingPlus/pingPlus_v3.tar.gz):
+
+[link]http://groups.geni.net/geni/wiki/Tutorials/ICDCS2013/GettingStartedWithGENI_I/Procedure/DesignSetup
 
 
 

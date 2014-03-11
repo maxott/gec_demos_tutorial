@@ -5,7 +5,6 @@ Setup your experiment as shown here with the pingPlus package [link](http://www.
 http://groups.geni.net/geni/wiki/Tutorials/ICDCS2013/GettingStartedWithGENI_I/Procedure/DesignSetup
 
 
-Inline `code` has `bak-ticks around` it.
 
 ##Write your Application##
 

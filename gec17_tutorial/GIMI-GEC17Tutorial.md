@@ -76,6 +76,9 @@ The image below illustrates the ExoGENI topology that we will create within the 
 
 In Section 1.Reserving Resources, we will go through the process of setting up and obtaining a slice that represents this topology.
 
+![12 Pings](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/DesignSetup/GIMI_Experiment_Topo.2.png)
+__Figure 1__. 12 pings.
+
 ![GIMI_Experiment_Topo.2.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/DesignSetup/GIMI_Experiment_Topo.2.png "")
 
 The routing in this topology is set up as follows:

@@ -7,7 +7,7 @@
 
 ####Introduction####
 #####GIMI Configuration#####
-![gec15-Configuration.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec15-Configuration.png "Configuration")
+![Configuration.png](http://groups.geni.net/geni/attachment/wiki/GIMI-GEC16-Tutorials/GIMI-GEC16-TutorialB/Intro/Configuration.png?format=raw "")
 
 #####Workflow#####
 In this part of the tutorial we give a brief overview on the experiment workflow. GIMI is providing experimenters with a set of tools that will aid them in allocating GENI resources (currently this is limited to ExoGENI resources), executing experiments, and performing measurements while these experiments are running. In addition, the GIMI tools will allow experimenters to analyze and visualize measurement data. Finally, a federated set of iRODS servers provides an archival service.
@@ -15,11 +15,11 @@ In this part of the tutorial we give a brief overview on the experiment workflow
 #####Topology#####
 The image below illustrates the ExoGENI topology that we will create within the scope of this tutorial. The experiment described above will be executed on the basis of this topology. Note, that NodeC is running in a different physical location (BBN) than the other nodes (RENCI). In Section [Obtain Slice], we will go through the process of setting up and obtaining a slice that represents this topology.
 
-![gec-15-topology.jpg](/home/cong/Dropbox/SHARED/GENI/GEC/gec-15-topology.jpg "topo")
+![topology.jpg](http://groups.geni.net/geni/attachment/wiki/GIMI-GEC16-Tutorials/GIMI-GEC16-TutorialB/Intro/topology.jpg?format=raw "")
 
 The routing in this topology is set up as follows:
 
-![gec-15-routing.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec-15-routing.png "routing")
+![gec-15-routing.png](http://emmy9.casa.umass.edu/GEC-17/gec-15-routing.png "")
 
 #####Help#####
 
@@ -353,7 +353,7 @@ The latest version of OML offers the capability of executing a script after the 
 After establishing the slice on which the experiment will be executed, the experimenter will be most likely be interested in verifying if the slice has been initiated correctly. In this tutorial, we use an [OMF experiment script](http://emmy9.casa.umass.edu/GEC15-GIMI-Tutorial/step1-ping_all.rb) that executes pings between neighboring nodes. 
 The following figure shows that a total of 12 (between each pair of nodes and in each direction) ping are performed.
 
-![gec-15-5-node-ping.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec-15-5-node-ping.png "5-node-ping")
+![ping.png](http://groups.geni.net/geni/attachment/wiki/GIMI-GEC16-Tutorials/GIMI-GEC16-TutorialB/Orchestrate/ping.png?format=raw "")
 
     defProperty('source1', "nodeA", "ID of a resource")
     defProperty('source2', "nodeB", "ID of a resource")
@@ -651,6 +651,8 @@ You should see the following output after executing the omf command.
 
 After establishing the routing, we use an [OMF experiment script](http://emmy9.casa.umass.edu/GEC15-GIMI-Tutorial/step3-ping_e2e.rb) that executes pings between each pair of nodes that contains one hop, to verify the correctness of routing setup.
 
+![GIMIPing_e2e.png](http://groups.geni.net/geni/attachment/wiki/GIMI-GEC16-Tutorials/GIMI-GEC16-TutorialB/Orchestrate/GIMIPing_e2e.png?format=raw "")
+
     defProperty('source1', "nodeA", "ID of a resource")
     defProperty('source2', "nodeB", "ID of a resource")
     defProperty('source3', "nodeC", "ID of a resource")
@@ -831,6 +833,8 @@ You should see the following output after executing the omf command.
 
 We will use an [OMF experiment script](http://emmy9.casa.umass.edu/GEC15-GIMI-Tutorial/step4-otg_nmetrics.rb) to execute oml enabled traffic generator and receiver (otg and otr) to simulate network traffic, and use oml enabled nmetrics to measure the system usage (e.g., CUP, memory) and network interface usage on each of the participated ExoGENI nodes.
 
+![otg_nmetrics.png](http://groups.geni.net/geni/attachment/wiki/GIMI-GEC16-Tutorials/GIMI-GEC16-TutorialB/Orchestrate/otg_nmetrics.png?format=raw "")
+
 The one we use for this tutorial is shown below.
 
     defProperty('theSender','nodeB','ID of sender node')
@@ -981,20 +985,20 @@ Labwiki can be used to Plan, Prepare and Run your Experiment.
 ####D.1.1 Plan####
 Labwiki accounts have already been created for you for this tutorial. To use Labwiki, go to [GIMI portal](labwiki.casa.umass.edu) and login with the username and password you have been given.
 
-![gec-16-Labwiki_1.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec-16-Labwiki_1.png "")
+![Labwiki_1.png](http://groups.geni.net/geni/attachment/wiki/GIMI-GEC16-Tutorials/GIMI-GEC16-TutorialB/Observe/Labwiki_1.png?format=raw "")
 
 After you have successfully been signed in you will be able to see a screen like the one below. 
 
-![gec-16-Labwiki_2a.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec-16-Labwiki_2a.png "")
+![Labwiki_2a.png](http://groups.geni.net/geni/attachment/wiki/GIMI-GEC16-Tutorials/GIMI-GEC16-TutorialB/Observe/Labwiki_2a.png?format=raw "")![gec-16-Labwiki_2a.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec-16-Labwiki_2a.png "")
 
 The left column could contain the steps to run the experiment or general information about the experiment.
 
-![gec-16-Labwiki_2.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec-16-Labwiki_2.png "")
+![Labwiki_2.png](http://groups.geni.net/geni/attachment/wiki/GIMI-GEC16-Tutorials/GIMI-GEC16-TutorialB/Observe/Labwiki_2.png?format=raw "")
 
 ####D.1.2 Prepare####
 In the Prepare column, you can select the experiment that you want to execute. In this column you will also be able to edit your experiment script.
 
-![gec-16-Labwiki_3.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec-16-Labwiki_3.png "")
+![Labwiki_3.png](http://groups.geni.net/geni/attachment/wiki/GIMI-GEC16-Tutorials/GIMI-GEC16-TutorialB/Observe/Labwiki_3.png?format=raw "")
 
 After editing, click on the save icon at the top of the column to save your script. 
 Next, click and drag the icon at the top left corner over to the right column Execute.
@@ -1006,24 +1010,23 @@ Under slice name, type in the name of your slice as you have entered in the Fluk
 Then. scroll towards the bottom of this column and under the tab named Graph, type 'true'.This enables the graph view on your execute column.
 Once the experiment starts running you will be able to scroll down and view the graph.
 
-![gec-16-Labwiki_4.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec-16-Labwiki_4.png "")
+![Labwiki_4.png](http://groups.geni.net/geni/attachment/wiki/GIMI-GEC16-Tutorials/GIMI-GEC16-TutorialB/Observe/Labwiki_4.png?format=raw "")
 
 Click on 'Start Experiment' at the bottom of the screen.
 
-![gec-16-Labwiki_5.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec-16-Labwiki_5.png "")
-
+![Labwiki_5.png](http://groups.geni.net/geni/attachment/wiki/GIMI-GEC16-Tutorials/GIMI-GEC16-TutorialB/Observe/Labwiki_5.png?format=raw "")
 After a couple of seconds, you can see the graph at the bottom of the screen.
 
-![gec-16-Labwiki_6.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec-16-Labwiki_6.png "")
+![Labwiki_6.png](http://groups.geni.net/geni/attachment/wiki/GIMI-GEC16-Tutorials/GIMI-GEC16-TutorialB/Observe/Labwiki_6.png?format=raw "")
 
 You can click and drag it to the Plan screen just above Figure 12. This will display the graph along with the experiment description. This graph is also dynamic.
 
-![gec-16-Labwiki_7.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec-16-Labwiki_7.png "")
+![Labwiki_7.png](http://groups.geni.net/geni/attachment/wiki/GIMI-GEC16-Tutorials/GIMI-GEC16-TutorialB/Observe/Labwiki_7.png?format=raw "")
 
 You can click and drag the experiment description to the Prepare column. This allows you to add any comments or details about the experiment results.
 Similarly, Experiments 2 and 3 can be run using the same procedure. Experiment 2 does not have a graph.
 
-![gec16-Labwiki_8.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec16-Labwiki_8.png "")
+![Labwiki_8.png](http://groups.geni.net/geni/attachment/wiki/GIMI-GEC16-Tutorials/GIMI-GEC16-TutorialB/Observe/Labwiki_8.png?format=raw "")
 
 Once you have your slice up and running you can visualize any experiment using LabWiki.
 
@@ -1172,7 +1175,7 @@ The first R script creates a plot of the RTTs for each ping that's carried out i
 
 The resulting plot is shown below.
 
-![gec16-gimi-ping.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec16-gimi-ping.png "")
+![gimi20-ping.png](http://groups.geni.net/geni/attachment/wiki/GIMI-GEC16-Tutorials/GIMI-GEC16-TutorialB/Analyze/gimi20-ping.png?format=raw "")
 
 The following R script plots otr results from the 4th experiment we executed in Section C.
 
@@ -1200,7 +1203,7 @@ The following R script plots otr results from the 4th experiment we executed in 
     
 The resulting plot is shown below.
 
-![gec-16-gimi20_otg1.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec-16-gimi20_otg1.png "")
+![gimi20_otg1.png](http://groups.geni.net/geni/attachment/wiki/GIMI-GEC16-Tutorials/GIMI-GEC16-TutorialB/Analyze/gimi20_otg1.png?format=raw "")
 
 The following script plots part of nmetrics results from the 4th experiment we executed.
 
@@ -1236,7 +1239,7 @@ The following script plots part of nmetrics results from the 4th experiment we e
        
 The resulting plot is shown below.
 
-![gec-16gimi20-nmetrics-eth.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec-16gimi20-nmetrics-eth.png "")
+![gimi20-nmetrics-eth.png](http://groups.geni.net/geni/attachment/wiki/GIMI-GEC16-Tutorials/GIMI-GEC16-TutorialB/Analyze/gimi20-nmetrics-eth.png?format=raw "")
 
 All three scripts are simply executed with:
 

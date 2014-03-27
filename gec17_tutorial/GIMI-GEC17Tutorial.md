@@ -76,14 +76,11 @@ The image below illustrates the ExoGENI topology that we will create within the 
 
 In Section 1.Reserving Resources, we will go through the process of setting up and obtaining a slice that represents this topology.
 
-![12 Pings](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/DesignSetup/GIMI_Experiment_Topo.2.png)
-__Figure 1__. 12 pings.
-
-![GIMI_Experiment_Topo.2.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/DesignSetup/GIMI_Experiment_Topo.2.png "")
+![GIMI_Experiment_Topo.2.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/DesignSetup/GIMI_Experiment_Topo.2.png?format=raw "")
 
 The routing in this topology is set up as follows:
 
-![gec16-routing.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec16-routing.png "")
+![gec-15-routing.png](http://emmy9.casa.umass.edu/GEC-17/gec-15-routing.png "")
 
 ###1. Reserve Resources###
 ####1.1 Login to the [GENI Portal](https://portal.geni.net/)####
@@ -92,17 +89,17 @@ The routing in this topology is set up as follows:
 
 create Slice
 
-![ProjectPortal.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/DesignSetup/ProjectPortal.png "")
+![ProjectPortal.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/DesignSetup/ProjectPortal.png?format=raw "")
 
 Give the slice a unique name. Preferably something with your username in it. e.g dbhatlabwiki
 
-![createuniqueslice.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/DesignSetup/createuniqueslice.png "")
+![createuniqueslice.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/DesignSetup/createuniqueslice.png?format=raw "")
 
 ####1.3 Click on Add Resources and select RSpec####
 Select RSpec from drop down list under Choose Resources. For this tutorial we already have an RSpec created for you. Here, select GIMI_GEC17. 
 You can upload your own RSpec. 
 
-![selectRspec.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/DesignSetup/selectRspec.png "")
+![selectRspec.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/DesignSetup/selectRspec.png?format=raw "")
 
 Here you will need to select the ExoGENI racks assigned to you for the tutorial. This assignment is only done so that we can distribute VMs across different ExoGENI racks. Outside of this tutorial, you can use any of the following racks:
 
@@ -112,7 +109,7 @@ Here you will need to select the ExoGENI racks assigned to you for the tutorial.
 4. UH ExoGENI 
 5. RENCI ExoGENI 
 
-![selectrspecagg.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/DesignSetup/selectrspecagg.png "")
+![selectrspecagg.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/DesignSetup/selectrspecagg.png?format=raw "")
 
 Click on Reserve Resources
 ####1.4 Query for resources####
@@ -120,11 +117,11 @@ Click on your slice name at the top and click on Resource Status. Once you see a
 
 Check status 
 
-![resourcestatus.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/DesignSetup/resourcestatus.png "")
+![resourcestatus.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/DesignSetup/resourcestatus.png?format=raw "")
 
 Wait until ready 
 
-![readyresource.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/DesignSetup/readyresource.png "")
+![readyresource.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/DesignSetup/readyresource.png?format=raw "")
 
 ###2. Configure iRODs###
 
@@ -136,7 +133,7 @@ Please configure your iRODsEnv as explained here:
 Login to your GENI Portal account and Click on the Profile tab on the top right corner of the page.
 At the bottom of the Profile page, click on the Create iRODs button
 
-![iRODscreate.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/DesignSetup/iRODscreate.png "")
+![iRODscreate.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/DesignSetup/iRODscreate.png?format=raw "")
 
 ####2.2 Configuring iRODs Environment####
 You will be redirected to another page with your iRODs Environment and also your temporary iRODs account password.
@@ -289,7 +286,7 @@ After establishing the slice on which the experiment will be executed, the exper
 
 The following figure shows that a total of 12 (between each pair of nodes and in each direction) ping are performed.
 
-![ping.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/ping.png "")
+![ping.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/ping.png?format=raw "")
 
     defProperty('source1', "nodeA", "ID of a resource")
     defProperty('source2', "nodeB", "ID of a resource")
@@ -497,7 +494,7 @@ This script can be easily adapted if the experimenter wishes to set up the routi
 
 After establishing the routing, we use an [OMF experiment script] that executes pings between each pair of nodes that contains one hop, to verify the correctness of routing setup.
 
-![GIMIPing_e2e.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/GIMIPing_e2e.png "")
+![GIMIPing_e2e.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/GIMIPing_e2e.png?format=raw "")
 
     defProperty('source1', "nodeA", "ID of a resource")
     defProperty('source2', "nodeB", "ID of a resource")
@@ -627,7 +624,7 @@ After establishing the routing, we use an [OMF experiment script] that executes 
 
 We will use an [OMF experiment script] to execute oml enabled traffic generator and receiver (otg and otr) to simulate network traffic, and use oml enabled nmetrics to measure the system usage (e.g., CUP, memory) and network interface usage on each of the participated ExoGENI nodes.
 
-![otg_nmetrics.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/otg_nmetrics.png "")
+![otg_nmetrics.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/otg_nmetrics.png?format=raw "")
 
 The one we use for this tutorial is shown below.
 
@@ -732,13 +729,13 @@ If you are logged in to the GENI Portal you will be logged in to LabWiki automat
 *Otherwise please enter the same username and password you use for the GENI Portal*
 There is a link to LabWiki now available through the GENI Portal or you can click [here](http://labwiki.casa.umass.edu:4000/) to use LabWiki
 
-![Labwiki_OpenID.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/Labwiki_OpenID.png "")
+![Labwiki_OpenID.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/Labwiki_OpenID.png?format=raw "")
 
 Figure (1)
 
 Send your information. This allows LabWiki to use the GENI Portal ID to log you in to LabWiki.
 
-![Labwiki_sendinfo.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/Labwiki_sendinfo.png "")
+![Labwiki_sendinfo.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/Labwiki_sendinfo.png?format=raw "")
 
 Figure (2)
 
@@ -746,14 +743,14 @@ Figure (2)
 
 After you have successfully been signed in you will be able to see a screen like the one below. 
 
-![Labwiki_1.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/Labwiki_1.png "")
+![Labwiki_1.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/Labwiki_1.png?format=raw "")
 
 Figure (3)
 
 The left column could contain the steps to run the experiment or general information about the experiment.
 The scripts are written using a simple [markdown](http://daringfireball.net/projects/markdown/syntax) scripts.
 
-![Labwiki_2.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/Labwiki_2.png "")
+![Labwiki_2.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/Labwiki_2.png?format=raw "")
 
 Figure (4)
 
@@ -761,7 +758,7 @@ Figure (4)
 
 In the Prepare column, you can select the experiment that you want to execute. In this column you will also be able to edit your experiment script.
 
-![Labwiki_4.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/Labwiki_4.png "")
+![Labwiki_4.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/Labwiki_4.png?format=raw "")
 
 Figure (5)
 
@@ -778,7 +775,7 @@ If you do not want to create a new context, skip this step.
 At the top-right corner there is a button called 'Add Context'. This allows you to create an Experiment context which can be useful when you want to store related experiments in the same folder with associated metadata. This Context can then be browsed using the iRODs web interface. 
 Give the context a name, as shown below and click on 'Save': 
 
-![Labwiki_15.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/Labwiki_15.png "")
+![Labwiki_15.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/Labwiki_15.png?format=raw "")
 
 Figure (6)
 
@@ -788,13 +785,13 @@ Give your task a name. Select the Project, Experiment Context and Slice from the
 Then scroll towards the bottom of this column and under the tab named Graph, type 'true'.This enables the graph view on your execute column.
 Once the experiment starts running you will be able to scroll down and view the graph.
 
-![Labwiki_16.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/Labwiki_16.png "")
+![Labwiki_16.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/Labwiki_16.png?format=raw "")
 
 Figure (7)
 
 Click on 'Start Experiment' at the bottom of the screen.
 
-![Labwiki_19.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/Labwiki_19.png "")
+![Labwiki_19.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/Labwiki_19.png?format=raw "")
 
 Figure (8)
 
@@ -804,7 +801,7 @@ You can click and drag it to the Plan screen just above Figure 1. This will disp
 This allows you to add any comments or details about the experiment results.
 Similarly, Experiments 2 and 3 can be run using the same procedure. Experiment 2 does not have a graph.
 
-![Labwiki_12.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/Labwiki_12.png "")
+![Labwiki_12.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Execute/Labwiki_12.png?format=raw "")
 
 Figure(9)
 
@@ -817,12 +814,12 @@ This can be done from teh GENI Portal page or through Omni.
 
 Delete your resources as shown:
 
-![deleteresources.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Finish/deleteresources.png "")
+![deleteresources.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Finish/deleteresources.png?format=raw "")
 
 ###7. View data in iRODs ###
 
 To login it to iDrop, which allows you to view your iRODs data in the browser, click here . Enter your iRODs username and password from the GENI Portal.
 
-![iDroplogin.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Finish/iDroplogin.png "")
+![iDroplogin.png](http://groups.geni.net/geni/attachment/wiki/GEC17Agenda/GettingStartedWithGENI_III_GIMI/Procedure/Finish/iDroplogin.png?format=raw "")
 
 Click [here](http://wimax.orbit-lab.org/wiki/WiMAX/GIMIUse#Viewandanalyzeresults) to learn how to plot your data directly from iRODs.

@@ -22,7 +22,8 @@ After successfully finishing the tutorial, attendees should be able to instrumen
 
 ####Introduction####
 #####GIMI Configuration#####
-![gec15-Configuration.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec15-Configuration.png "Configuration")
+
+![Configuration.png](http://groups.geni.net/geni/attachment/wiki/GIMIv1.1Tutorial/Intro/Configuration.png?format=raw "")
 
 #####Workflow#####
 In this part of the tutorial we give a brief overview on the experiment workflow. GIMI is providing experimenters with a set of tools that will aid them in allocating GENI resources (currently this is limited to ExoGENI resources), executing experiments, and performing measurements while these experiments are running. In addition, the GIMI tools will allow experimenters to analyze and visualize measurement data. Finally, a federated set of iRODS servers provides an archival service.
@@ -30,11 +31,11 @@ In this part of the tutorial we give a brief overview on the experiment workflow
 #####Topology#####
 The image below illustrates the ExoGENI topology that we will create within the scope of this tutorial. The experiment described above will be executed on the basis of this topology. Note, that NodeC is running in a different physical location (BBN) than the other nodes (RENCI). In Section [Obtain Slice], we will go through the process of setting up and obtaining a slice that represents this topology.
 
-![gec-15-topology.jpg](/home/cong/Dropbox/SHARED/GENI/GEC/gec-15-topology.jpg "topo")
+![topology.jpg](http://groups.geni.net/geni/attachment/wiki/GIMIv1.1Tutorial/Intro/topology.jpg?format=raw "")
 
 The routing in this topology is set up as follows:
 
-![gec-15-routing.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec-15-routing.png "routing")
+![gec-15-routing.png](http://emmy9.casa.umass.edu/GEC-17/gec-15-routing.png "")
 
 #####Help#####
 
@@ -329,7 +330,8 @@ The latest version of OML offers the capability of executing a script after the 
 ####C.1.2 Verification of Topology####
 After establishing the slice on which the experiment will be executed, the experimenter will be most likely be interested in verifying if the slice has been initiated correctly. In this tutorial, we use an [OMF experiment script](http://emmy9.casa.umass.edu/GEC15-GIMI-Tutorial/step1-ping_all.rb) that executes pings between neighboring nodes. 
 The following figure shows that a total of 12 (between each pair of nodes and in each direction) ping are performed.
-![gec-15-5-node-ping.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec-15-5-node-ping.png "5-node-ping")
+
+![ping.png](http://groups.geni.net/geni/attachment/wiki/GIMIv1.1Tutorial/Orchestrate/ping.png?format=raw "")
 
     defProperty('source1', "nodeA", "ID of a resource")
     defProperty('source2', "nodeB", "ID of a resource")
@@ -627,6 +629,8 @@ You should see the following output after executing the omf command.
 
 After establishing the routing, we use an [OMF experiment script](http://emmy9.casa.umass.edu/GEC15-GIMI-Tutorial/step3-ping_e2e.rb) that executes pings between each pair of nodes that contains one hop, to verify the correctness of routing setup.
 
+![GIMIPing_e2e.png](http://groups.geni.net/geni/attachment/wiki/GIMIv1.1Tutorial/Orchestrate/GIMIPing_e2e.png?format=raw "")
+
     defProperty('source1', "nodeA", "ID of a resource")
     defProperty('source2', "nodeB", "ID of a resource")
     defProperty('source3', "nodeC", "ID of a resource")
@@ -807,6 +811,8 @@ You should see the following output after executing the omf command.
 
 We will use an [OMF experiment script](http://emmy9.casa.umass.edu/GEC15-GIMI-Tutorial/step4-otg_nmetrics.rb) to execute oml enabled traffic generator and receiver (otg and otr) to simulate network traffic, and use oml enabled nmetrics to measure the system usage (e.g., CUP, memory) and network interface usage on each of the participated ExoGENI nodes.
 
+![otg_nmetrics.png](http://groups.geni.net/geni/attachment/wiki/GIMIv1.1Tutorial/Orchestrate/otg_nmetrics.png?format=raw "")
+
 The one we use for this tutorial is shown below.
 
     defProperty('theSender','nodeB','ID of sender node')
@@ -951,7 +957,7 @@ You should see the following output (or similar) after executing the omf command
 ###D.1 omf_web based Live Visulization###
 To allow live observation, we make use of [omf_web](https://github.com/mytestbed/omf_web). This module is used to define and run a web server which allows a user to explore and intereact with various experiments. It is a stand-alone unit communicating through the OMF messaging framework with other entities.
 
-![gec-15-omf_web.png](/home/cong/Dropbox/SHARED/GENI/GEC/gec-15-omf_web.png "omf-web")
+![omf_web.png](http://groups.geni.net/geni/attachment/wiki/GIMIv1.1Tutorial/Observe/omf_web.png?format=raw "")
 
 ###D.2 omf_web for GIMI Tutorial###
 For the GIMI Tutorial at GEC15 we have already configured and set up an omf_web based web servers that runs at http://emmy9.casa.umass.edu:30XX. In this case the XX should be replaced by the equivalent number of your tutorial user account. (E.g., if your account is gimi10 you should point your browser to http://emmy9.casa.umass.edu:30XX.)
@@ -1025,6 +1031,10 @@ iRODS also provides a nice and easy to use web interface, which we will explore 
         Username: as given on printout
         Password: as given on printout
         
++ The following screenshot shows an example for the web interface: 
+
+![irods_screen.png](http://groups.geni.net/geni/attachment/wiki/GIMIv1.0Tutorial/irods_screen.png?format=raw "")
+
 ###E.3 IRODS and OML###
 The iRODS service we are offering within the scope of GIMI does NOT guarantee 100% reliable data storage (i.e., we do NOT back up the data). If you are performing your own experiments and want to use iRODS you are absolutely welcome but be aware that we do NOT guarantee recovery from data loss.
 
@@ -1124,6 +1134,8 @@ The following R script plots otr results from the 4th experiment we executed in 
        col=c("blue"), pch=21, lty=1);
     
     dev.off()
+    
+
     
 The following script plots part of nmetrics results from the 4th experiment we executed.
 

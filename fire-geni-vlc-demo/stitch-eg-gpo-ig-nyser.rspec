@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rspec type="request" 
+	xmlns="http://www.geni.net/resources/rspec/3" 
+	xmlns:planetlab="http://www.planet-lab.org/resources/sfa/ext/planetlab/1" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.geni.net/resources/rspec/3 
+	http://www.geni.net/resources/rspec/3/request.xsd">  
+
+  <node client_id="eg-gpo" component_manager_id="urn:publicid:IDN+exogeni.net:bbnvmsite+authority+am">
+   <sliver_type name="XOMedium">
+       <disk_image name="http://emmy9.casa.umass.edu/Disk_Images/ExoGENI/Ubuntu1204/ubuntu1204gimidev.xml" version="2a3c19e07232a5d3bb6a300eca0d0db7ce7aca79" />
+    </sliver_type>
+    <services>
+        <install install_path="/" url="http://emmy9.casa.umass.edu/GEC-20/gimidev.tar.gz"/>
+        <execute shell="bash" command="sudo sh /gimidev/gimibot.sh $self.Name() $sliceName; wget http://fed4fire-testbeds.ilabt.iminds.be/xtreemfs/dir.sh -P /root; sudo chmod 755 /root/dir.sh; sudo /root/dir.sh"/>
+    </services>
+   <interface client_id="eg-gpo:if0">
+      <ip address="192.168.1.1" netmask="255.255.255.0" />
+    </interface>
+  </node>
+  <node client_id="ig-nyser" component_manager_id="urn:publicid:IDN+instageni.nysernet.org+authority+cm" >
+     <sliver_type name="emulab-xen">
+      <disk_image name="https://www.instageni.nysernet.org/image_metadata.php?uuid=a9b995df-e6fa-11e3-9973-000000000000"/>
+    </sliver_type>
+     <services>
+      <execute command="sudo cp /gimidev/gimibot.sh /gimidev/postboot_script.sh /; chmod +x /gimibot.sh; chmod +x /postboot_script.sh; sudo sh /postboot_script.sh" shell="sh"/>
+<install install_path="/" url="http://emmy9.casa.umass.edu/GEC-20/gimidev.tar.gz"/>
+      <execute shell="sh" command="cd /local ; sudo wget http://fed4fire-testbeds.ilabt.iminds.be/xtreemfs/client.sh"/>
+      <execute shell="sh" command="sudo chmod 755 /local/client.sh"/>
+    <execute shell="sh" command="sudo /local/client.sh"/>
+    </services>
+    <interface client_id="ig-nyse:if0">
+      <ip address="192.168.1.2" netmask="255.255.255.0" type="ipv4"/>
+    </interface>
+  </node>
+  <link client_id="link-eggpo-igutah">
+    <component_manager name="urn:publicid:IDN+exogeni.net:bbnvmsite+authority+am"/>
+    <interface_ref client_id="eg-gpo:if0"/>
+    <component_manager name="urn:publicid:IDN+instageni.nysernet.org+authority+cm"/>
+    <interface_ref client_id="ig-nyse:if0"/>
+  </link>
+</rspec>

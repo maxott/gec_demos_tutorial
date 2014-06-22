@@ -1,0 +1,266 @@
+#
+# Define the resources and parameters used in this experiment
+#
+defProperty('capacity', 10000000, 'in bits per second')
+defProperty('xtreemfs1', "xtreemfs1", 'xtreemfs replica 1')
+defProperty('xtreemfs2', "xtreemfs2", 'xtreemfs replica 2')
+defProperty('webserver', "dc2n1-DC2g", 'webserver')
+defProperty('video_G1', "dc1n50-DC1a", 'video clients')
+defProperty('interfaceServer', "vlan215", 'webserver interface to modify')
+
+g1 = [2,3,4,5,6,7,8,9,10,11,12,13]
+g2 = [26,27,28,29,30,31,32,33,34,35,36]
+g3 = [14,15,16,17,18,19,20,21,22,23,24,25]
+g4 = [37,38,39,40,41,42,43,44,45,46,47,48,49,50]
+
+# Set #1
+#
+vlc_group1 = g1.map { |e| "dc2n#{e.to_s}-DC2f" }
+vlc_group2 = g2.map { |e| "dc2n#{e.to_s}-DC2f" }
+vlc_group3 = g3.map { |e| "dc2n#{e.to_s}-DC2f" }
+vlc_group4 = g4.map { |e| "dc2n#{e.to_s}-DC2f" }
+
+# Set #2
+#
+#vlc_group1 = g1.map { |e| "dc1n#{e.to_s}-DC1j" }
+#vlc_group2 = g2.map { |e| "dc1n#{e.to_s}-DC1j" }
+#vlc_group3 = g3.map { |e| "dc1n#{e.to_s}-DC1j" }
+#vlc_group4 = g4.map { |e| "dc1n#{e.to_s}-DC1j" }
+
+# For some reasons these ones never come up...
+#exclude = ['dc1n1-DC1j','dc2n5-DC2g']
+exclude = []
+exclude.each do |e|
+  vlc_group1.delete(e)
+  vlc_group2.delete(e)
+  vlc_group3.delete(e)
+  vlc_group4.delete(e)
+end
+
+defApplication('trace', 'trace') do |app|
+  app.version(2, 9, -0)
+  app.shortDescription = 'Packet capture'
+  app.description = "A packet capturing application using libtrace"
+  app.path = "@bindir@/trace-oml2"
+ 
+  app.defProperty('filter', 'Filter expression BPFEXP', '-f', :type => :string)
+  app.defProperty('snaplen', 'Snarf Bytes of data from each  packet', '-s', :type => :int, :unit => 'Bytes')
+  app.defProperty('promisc', 'Put  the  interface into promiscuous mode', '-p', :type => 'boolean')
+  app.defProperty('interface', 'Interface to trace', '-i', :type => :string, :default => '"eth0"')
+  app.defProperty('radiotap', 'Enable radiotap', '-r', :type => 'boolean')
+
+  app.defMeasurement("radiotap") do |m|
+    m.defMetric('pktid',             :uint64, ' internal packet ID to link MPs')
+    m.defMetric('tsft',              :uint64, ' wireless Timer Syncronisation Function')
+    m.defMetric('rate',              :uint32, ' Wireless Rate')
+    m.defMetric('freq',              :uint32, ' Wireless Channel Frequency')
+    m.defMetric('sig_strength_dBm',  :int32, ' Wireless Signal Strength in dB')
+    m.defMetric('noise_strength_dBm',:int32, ' Wireless Noise Strength in dBm')
+    m.defMetric('sig_strength',      :uint32, ' Wireless Signal Strength in dB')
+    m.defMetric('noise_strength',    :uint32, ' Wireless Noise Strength in dB')
+    m.defMetric('attenuation',       :uint32, ' Transmit Attenuation')
+    m.defMetric('attenuation_dB',    :uint32, ' Transmit Attenuation in dB')
+    m.defMetric('power',             :int32, ' Transmit Power in dBm')
+    m.defMetric('antenna',           :uint32, ' Wireless Antenna')
+    m.defMetric('sourceMAC', :string, ' Source MAC Address')
+    m.defMetric('dstMAC',    :string, ' Destination MAC Address')
+  end
+ 
+  app.defMeasurement("ip") do |m|
+    m.defMetric('pktid',    :uint64, ' internal packet ID to link MPs')
+    m.defMetric('ip_tos',   :uint32, ' Type of Service')
+    m.defMetric('ip_len',   :uint32, ' Total Length')
+    m.defMetric('ip_id',    :int32,  ' Identification')
+    m.defMetric('ip_off',   :uint32, ' IP Fragment offset (and flags)')
+    m.defMetric('ip_ttl',   :uint32, ' Time to Live')
+    m.defMetric('ip_proto', :uint32, ' Protocol')
+    m.defMetric('ip_sum',   :uint32, ' Checksum')
+    m.defMetric('ip_src',   :string, ' Source Address')
+    m.defMetric('ip_dst',   :string, ' Destination Address')
+    m.defMetric('ip_sizeofpacket', :uint32, ' Size of the Packet')
+    m.defMetric('ip_ts',    :double, ' timestamp of the measurement')
+  end
+  
+  app.defMeasurement("tcp") do |m|
+    m.defMetric('pktid',        :uint64, ' internal packet ID to link MPs')
+    m.defMetric('tcp_source',   :uint32, ' Source Port')
+    m.defMetric('tcp_dest',     :uint32, ' Destination Port')
+    m.defMetric('tcp_seq',      :uint32, ' TCP sequence Number')
+    m.defMetric('tcp_ack_seq',  :uint32, ' Acknowledgment Number')
+    m.defMetric('tcp_window',   :uint32, ' Window Size')
+    m.defMetric('tcp_checksum', :uint32, ' Checksum')
+    m.defMetric('tcp_urgptr',   :uint32, ' Urgent Pointer')
+    m.defMetric('tcp_packet_size', :uint32, ' Size of the Packet')
+    m.defMetric('tcp_ts',       :double, ' timestamp of the measurement')
+ end
+  
+  app.defMeasurement("udp") do |m|
+    m.defMetric('pktid',        :uint64, ' internal packet ID to link MPs')
+    m.defMetric('udp_source',   :uint32, ' Source Port')
+    m.defMetric('udp_dest',     :uint32, ' Destination Port')
+    m.defMetric('udp_len',      :uint32, ' Length of Datagram')
+    m.defMetric('udp_checksum', :uint32, ' Checksum')
+    m.defMetric('udp_ts',       :double, ' timestamp of the measurement')
+  end
+  
+  app.defMeasurement("ip6") do |m|
+    m.defMetric('pktid',        :uint64, ' internal packet ID to link MPs')
+    m.defMetric('ip6_src',      :string, ' Source Address')
+    m.defMetric('ip6_dst',      :string, ' Destination Address')
+    m.defMetric('ip6_ts',       :double, ' timestamp of the measurement')
+  end
+  
+  app.defMeasurement("ip6_mh") do |m|
+    m.defMetric('pktid',        :uint64, ' internal packet ID to link MPs')
+    m.defMetric('mh_type',      :string, ' BU or BAck')
+    m.defMetric('sequ_nb',      :uint32, ' binding sequence number')
+    m.defMetric('tv_sec',       :uint32, ' packet capture time (sec)')
+    m.defMetric('tv_usec',      :uint32, ' packet capture time (usec)')
+    m.defMetric('payload',      :string, ' CoA for BU, nothing for BAck')
+  end
+  
+  app.defMeasurement("icmp6") do |m|
+    m.defMetric('pktid',        :uint64, ' internal packet ID to link MPs')
+    m.defMetric('type',         :uint32, ' ICMP type')
+    m.defMetric('sequ_nb',      :uint32, ' Sequence number for ping')
+    m.defMetric('tv_sec',       :uint32, ' packet capture time (sec)')
+    m.defMetric('tv_usec',      :uint32, ' packet capture time (usec)')
+  end
+end
+
+defApplication('vlc') do |app|
+  app.quiet = true
+  app.binary_path = "/usr/local/bin/vlc"
+  app.description = "VLC multimedia player and streamer" 
+  app.defProperty("input", "Stream input (e.g. file or network address)", "", :type => :string, :dynamic => false)
+  app.defProperty("intf", "Main interface module", "--intf", :type => :string, :dynamic => false)
+    
+  app.defMeasurement('dashRateAdaptation') do |mp|
+    mp.defMetric('chosenRate_bps',:int)
+    mp.defMetric('empiricalRate_bps',:int)
+    mp.defMetric('decisionRate_bps',:int)
+    mp.defMetric('buffer_percent',:int)
+  end
+  
+  app.defMeasurement('dashDlSession') do |mp|
+    mp.defMetric('chunkCount',:int)
+    mp.defMetric('readSession_B',:int)
+    mp.defMetric('readChunk_B',:int)
+    mp.defMetric('timeSession_s',:float)
+    mp.defMetric('timeChunk_s',:float)
+  end
+end
+  
+defGroup('video_group1', *vlc_group1) do |node|
+  node.addApplication("vlc") do |app|
+    app.setProperty('input', 'http://10.0.5.101/ftp/datasets/mmsys12/BigBuckBunny/bunny_2s_480p_only/bunny_gec20.mpd')
+    app.measure('dashDlSession', :samples =>1)
+    app.measure('dashRateAdaptation', :samples =>1)    
+  end
+end
+  
+defGroup('video_group2', *vlc_group2) do |node|
+  node.addApplication("vlc") do |app|
+    app.setProperty('input', 'http://10.0.5.101/ftp/datasets/mmsys12/BigBuckBunny/bunny_2s_480p_only/bunny_gec20.mpd')
+    app.measure('dashDlSession', :samples =>1)
+    app.measure('dashRateAdaptation', :samples =>1)
+  end
+end
+
+defGroup('video_group3', *vlc_group3) do |node|
+  node.addApplication("vlc") do |app|
+    app.setProperty('input', 'http://10.0.5.101/ftp/datasets/mmsys12/BigBuckBunny/bunny_2s_480p_only/bunny_gec20.mpd')
+    app.measure('dashDlSession', :samples =>1)
+    app.measure('dashRateAdaptation', :samples =>1)    
+  end
+end
+  
+defGroup('video_group4', *vlc_group4) do |node|
+  node.addApplication("vlc") do |app|
+    app.setProperty('input', 'http://10.0.5.101/ftp/datasets/mmsys12/BigBuckBunny/bunny_2s_480p_only/bunny_gec20.mpd')
+    app.measure('dashDlSession', :samples =>1)
+    app.measure('dashRateAdaptation', :samples =>1)    
+  end
+end
+  
+defGroup('pcap_measurement',  prop.webserver) do |node|
+  node.addApplication("trace") do |app|
+      app.setProperty('interface',  "eth2")
+      app.measure('ip', :interval =>1)   
+  end
+end    
+  
+onEvent(:ALL_UP) do |node|
+  
+  info(" ------ Setup Traffic Shaping")
+  group("pcap_measurement").exec("/sbin/modprobe sch_netem")
+  group("pcap_measurement").exec("/sbin/modprobe ifb numifbs=10")
+  group("pcap_measurement").exec("/sbin/sysctl -w net.core.rmem_max=8388608") 
+  group("pcap_measurement").exec("/sbin/sysctl -w net.core.wmem_max=8388608") 
+  group("pcap_measurement").exec("/sbin/sysctl -w net.core.netdev_max_backlog=2048") 
+  #group("pcap_measurement").exec("/sbin/ifconfig #{prop.interfaceServer} txqueuelen") 
+  group("pcap_measurement").exec("/sbin/tc qdisc del dev #{prop.interfaceServer} root") 
+  group("pcap_measurement").exec("/sbin/tc qdisc del dev #{prop.interfaceServer} ingress") 
+  group("pcap_measurement").exec("/sbin/tc qdisc add dev #{prop.interfaceServer} handle 130 root htb default 1") 
+  group("pcap_measurement").exec("/sbin/tc class add dev #{prop.interfaceServer} classid 130:1 parent 130 htb rate #{prop.capacity.to_s} ceil #{prop.capacity.to_s}") 
+  group("pcap_measurement").exec("/sbin/tc qdisc add dev #{prop.interfaceServer} handle 120 parent 130:1 netem drop 0 delay 0us")
+ 
+  after 10 do
+    info(" ------ Start Group 1 VLCs")
+    group('video_group1').startApplications
+  end
+  
+  after 30 do 
+    info(" ------ Start Group 2 VLCs")
+    group('video_group2').startApplications
+  end
+
+  after 50 do 
+    info(" ------ Start Group 3 VLCs")
+    group('video_group3').startApplications
+  end
+  
+  after 70 do 
+    info(" ------ Start Group 4 VLCs")
+    group('video_group4').startApplications
+  end
+    
+  after 250 do
+    info(" ------ Now Stop the experiment")
+    group('video_group1').stopApplications
+    group('video_group2').stopApplications
+    group('video_group3').stopApplications
+    group('video_group4').stopApplications      
+  end
+  
+  after 270 do     
+    Experiment.done
+  end 
+end
+  
+defGraph 'DashRate1' do |g|
+  g.ms('dashRateAdaptation').select {[:oml_ts_client, :decisionRate_bps, :oml_sender_id]}
+  g.caption "Decision Rate."
+  g.type 'line_chart3'
+  g.mapping :x_axis => :oml_ts_client, :y_axis => :decisionRate_bps, :group_by => :oml_sender_id
+  g.xaxis :legend => 'time [s]'
+  g.yaxis :legend => 'Decision Rate', :ticks => {:format => 's'}
+end
+
+defGraph 'DashRate2' do |g|
+  g.ms('dashRateAdaptation').select {[:oml_ts_client, :empiricalRate_bps, :oml_sender_id]}
+  g.caption "Empirical Rate"
+  g.type 'line_chart3'
+  g.mapping :x_axis => :oml_ts_client, :y_axis => :empiricalRate_bps, :group_by => :oml_sender_id
+  g.xaxis :legend => 'time [s]'
+  g.yaxis :legend => 'Empirical Rate', :ticks => {:format => 's'}
+end
+
+defGraph 'DashRate3' do |g|
+  g.ms('dashRateAdaptation').select {[:oml_ts_client, :buffer_percent, :oml_sender_id]}
+  g.caption "VLC Buffer Percentage"
+  g.type 'line_chart3'
+  g.mapping :x_axis => :oml_ts_client, :y_axis => :buffer_percent, :group_by => :oml_sender_id
+  g.xaxis :legend => 'time [s]'
+  g.yaxis :legend => 'Buffer Percentage [%] ', :ticks => {:format => 's'}
+end

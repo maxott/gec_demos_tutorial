@@ -1,0 +1,59 @@
+defProperty('webserver', "dc2n1-DC2g", 'webserver')
+
+g1 = [2,3,4,5,6,7,8,9,10,11,12,13]
+g2 = [26,27,28,29,30,31,32,33,34,35,36]
+g3 = [14,15,16,17,18,19,20,21,22,23,24,25]
+g4 = [37,38,39,40,41,42,43,44,45,46,47,48,49,50]
+
+# Set #1
+#
+#vlc_group1 = g1.map { |e| "dc2n#{e.to_s}-DC2f" }
+#vlc_group2 = g2.map { |e| "dc2n#{e.to_s}-DC2f" }
+#vlc_group3 = g3.map { |e| "dc2n#{e.to_s}-DC2f" }
+#vlc_group4 = g4.map { |e| "dc2n#{e.to_s}-DC2f" }
+
+# Set #2
+#
+#vlc_group1 = g1.map { |e| "dc1n#{e.to_s}-DC1j" }
+#vlc_group2 = g2.map { |e| "dc1n#{e.to_s}-DC1j" }
+#vlc_group3 = g3.map { |e| "dc1n#{e.to_s}-DC1j" }
+#vlc_group4 = g4.map { |e| "dc1n#{e.to_s}-DC1j" }
+
+# Both sets #1 and #2
+#
+vlc_group1 = g1.map { |e| "dc1n#{e.to_s}-DC1j" } + g1.map { |e| "dc2n#{e.to_s}-DC2g" }
+vlc_group2 = g2.map { |e| "dc1n#{e.to_s}-DC1j" } + g2.map { |e| "dc2n#{e.to_s}-DC2g" }
+vlc_group3 = g3.map { |e| "dc1n#{e.to_s}-DC1j" } + g3.map { |e| "dc2n#{e.to_s}-DC2g" }
+vlc_group4 = g4.map { |e| "dc1n#{e.to_s}-DC1j" } + g4.map { |e| "dc2n#{e.to_s}-DC2g" }
+
+# For some reasons these ones never come up...
+exclude = ['dc1n1-DC1j','dc2n5-DC2g']
+exclude.each do |e|
+  vlc_group1.delete(e)
+  vlc_group2.delete(e)
+  vlc_group3.delete(e)
+  vlc_group4.delete(e)
+end
+
+defGroup('video_group1', *vlc_group1)
+defGroup('video_group2', *vlc_group2)
+defGroup('video_group3', *vlc_group3)
+defGroup('video_group4', *vlc_group4)
+defGroup('pcap_measurement',  prop.webserver)
+  
+onEvent(:ALL_UP) do |node|
+    
+  after 1 do 
+    info(" ------ Force clock sync")
+    group('pcap_measurement').exec('service ntp stop; ntpdate 193.104.37.238')
+    group('video_group1').exec('service ntp stop; ntpdate 193.104.37.238')
+    group('video_group2').exec('service ntp stop; ntpdate 193.104.37.238')
+    group('video_group3').exec('service ntp stop; ntpdate 193.104.37.238')
+    group('video_group4').exec('service ntp stop; ntpdate 193.104.37.238') 
+  end
+  
+  after 30 do     
+    Experiment.done
+  end 
+end
+

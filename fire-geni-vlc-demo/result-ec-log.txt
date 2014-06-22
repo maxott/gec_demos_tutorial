@@ -1,0 +1,425 @@
+STARTED: env -i /home/ubuntu/omf_job_service/omf_ec/omf_ec -e joedoe-2014-06-22T17-18-34 --oml_uri tcp:srv.mytestbed.net:3004 /tmp/ec_job_joedoe-2014-06-22T17-18-3420140622-26216-dw20hk -- --capacity 10000000 --xtreemfs1 xtreemfs1 --xtreemfs2 xtreemfs2 --webserver dc2n1-DC2g --video_G1 dc1n50-DC1a --interfaceServer vlan215
+STDOUT: OMF Experiment Controller - Copyright (c) 2012-13 National ICT Australia Limited (NICTA)
+STDOUT: {:type=>:json, :authenticate=>nil}
+STDERR: INFO	OML4R Client 2.10.4 [OMSPv4; Ruby 1.9.3] Copyright 2009-2014, NICTA
+STDERR: INFO	Collection URI is tcp:srv.mytestbed.net:3004
+STDOUT: 17:19:14 INFO  Object: OMF Experiment Controller 6.1.1 - Start
+STDOUT: 17:19:14 INFO  Object: Connected using {:proto=>:amqp, :user=>"guest", :domain=>"127.0.0.1"}
+STDOUT: 17:19:14 INFO  Object: Execute: /tmp/ec_job_joedoe-2014-06-22T17-18-3420140622-26216-dw20hk
+STDOUT: 17:19:14 INFO  Object: Properties: {:capacity=>10000000, :xtreemfs1=>"xtreemfs1", :xtreemfs2=>"xtreemfs2", :webserver=>"dc2n1-DC2g", :video_G1=>"dc1n50-DC1a", :interfaceServer=>"vlan215"}
+STDOUT: 17:19:14 INFO  OmfEc::ExperimentProperty: capacity = 10000000 (Fixnum)
+STDOUT: 17:19:14 INFO  OmfEc::ExperimentProperty: xtreemfs1 = "xtreemfs1" (String)
+STDOUT: 17:19:14 INFO  OmfEc::ExperimentProperty: xtreemfs2 = "xtreemfs2" (String)
+STDOUT: 17:19:14 INFO  OmfEc::ExperimentProperty: webserver = "dc2n1-DC2g" (String)
+STDOUT: 17:19:14 INFO  OmfEc::ExperimentProperty: video_G1 = "dc1n50-DC1a" (String)
+STDOUT: 17:19:14 INFO  OmfEc::ExperimentProperty: interfaceServer = "vlan215" (String)
+STDOUT: 17:19:14 WARN  OmfEc::AppDefinition: [DEPRECATION] 'version' is deprecated and not supported. Please do not use it.
+STDOUT: 17:19:14 WARN  OmfEc::AppDefinition: [DEPRECATION] 'shortDescription=' is deprecated. Please use 'description=' instead.
+STDOUT: 17:19:14 WARN  OmfEc::AppDefinition: [DEPRECATION] 'path=' is deprecated. Please use 'binary_path=' instead.
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:START: DashRate1
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:TYPE: line_chart3
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:MS:default: SELECT%20%22oml_ts_client%22,%20%22decisionRate_bps%22,%20%22oml_sender_id%22%20FROM%20%22vlc_dashRateAdaptation%22
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:MAPPING: %7B%22x_axis%22:%22oml_ts_client%22,%22y_axis%22:%22decisionRate_bps%22,%22group_by%22:%22oml_sender_id%22%7D
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:AXIS: %7B%22x%22:%7B%22legend%22:%22time%20[s]%22%7D,%22y%22:%7B%22legend%22:%22Decision%20Rate%22,%22ticks%22:%7B%22format%22:%22s%22%7D%7D%7D
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:CAPTION: Decision%20Rate.
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:STOP
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:START: DashRate2
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:TYPE: line_chart3
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:MS:default: SELECT%20%22oml_ts_client%22,%20%22empiricalRate_bps%22,%20%22oml_sender_id%22%20FROM%20%22vlc_dashRateAdaptation%22
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:MAPPING: %7B%22x_axis%22:%22oml_ts_client%22,%22y_axis%22:%22empiricalRate_bps%22,%22group_by%22:%22oml_sender_id%22%7D
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:AXIS: %7B%22x%22:%7B%22legend%22:%22time%20[s]%22%7D,%22y%22:%7B%22legend%22:%22Empirical%20Rate%22,%22ticks%22:%7B%22format%22:%22s%22%7D%7D%7D
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:CAPTION: Empirical%20Rate
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:STOP
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:START: DashRate3
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:TYPE: line_chart3
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:MS:default: SELECT%20%22oml_ts_client%22,%20%22buffer_percent%22,%20%22oml_sender_id%22%20FROM%20%22vlc_dashRateAdaptation%22
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:MAPPING: %7B%22x_axis%22:%22oml_ts_client%22,%22y_axis%22:%22buffer_percent%22,%22group_by%22:%22oml_sender_id%22%7D
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:AXIS: %7B%22x%22:%7B%22legend%22:%22time%20[s]%22%7D,%22y%22:%7B%22legend%22:%22Buffer%20Percentage%20[%25]%20%22,%22ticks%22:%7B%22format%22:%22s%22%7D%7D%7D
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:CAPTION: VLC%20Buffer%20Percentage
+STDOUT: 17:19:14 INFO  Graph::GraphDescription: REPORT:STOP
+STDOUT: 17:19:14 INFO  OmfEc::Experiment: Experiment: joedoe-2014-06-22T17-18-34 starts
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n2-DC1j' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n3-DC1j' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n4-DC1j' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n5-DC1j' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n6-DC1j' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n7-DC1j' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n8-DC1j' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n9-DC1j' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n10-DC1j' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n11-DC1j' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n12-DC1j' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n13-DC1j' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n2-DC2g' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n3-DC2g' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n4-DC2g' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n5-DC2g' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n6-DC2g' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n7-DC2g' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n8-DC2g' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n9-DC2g' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n10-DC2g' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n11-DC2g' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n12-DC2g' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n13-DC2g' to join 'video_group1'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n26-DC1j' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n27-DC1j' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n28-DC1j' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n29-DC1j' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n30-DC1j' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n31-DC1j' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n32-DC1j' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n33-DC1j' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n34-DC1j' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n35-DC1j' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n36-DC1j' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n26-DC2g' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n27-DC2g' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n28-DC2g' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n29-DC2g' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n30-DC2g' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n31-DC2g' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n32-DC2g' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n33-DC2g' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n34-DC2g' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n35-DC2g' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n36-DC2g' to join 'video_group2'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n14-DC1j' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n15-DC1j' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n16-DC1j' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n17-DC1j' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n18-DC1j' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n19-DC1j' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n20-DC1j' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n21-DC1j' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n22-DC1j' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n23-DC1j' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n24-DC1j' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n25-DC1j' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n14-DC2g' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n15-DC2g' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n16-DC2g' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n17-DC2g' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n18-DC2g' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n19-DC2g' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n20-DC2g' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n21-DC2g' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n22-DC2g' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n23-DC2g' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n24-DC2g' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n25-DC2g' to join 'video_group3'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n37-DC1j' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n38-DC1j' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n39-DC1j' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n40-DC1j' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n41-DC1j' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n42-DC1j' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n43-DC1j' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n44-DC1j' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n45-DC1j' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n46-DC1j' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n47-DC1j' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n48-DC1j' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n49-DC1j' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc1n50-DC1j' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n37-DC2g' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n38-DC2g' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n39-DC2g' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n40-DC2g' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n41-DC2g' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n42-DC2g' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n43-DC2g' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n44-DC2g' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n45-DC2g' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n46-DC2g' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n47-DC2g' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n48-DC2g' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n49-DC2g' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n50-DC2g' to join 'video_group4'
+STDOUT: 17:19:15 INFO  OmfEc::Experiment: Configure 'dc2n1-DC2g' to join 'pcap_measurement'
+STDOUT: 17:19:16 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n3-DC1j
+STDOUT: 17:19:16 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n4-DC1j
+STDOUT: 17:19:16 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n2-DC1j
+STDOUT: 17:19:16 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n5-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n5-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n6-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n30-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n7-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n31-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n32-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n28-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n29-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n27-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n11-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n35-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n33-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n34-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n8-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n11-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n13-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n12-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n7-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n8-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n13-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n10-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n12-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n30-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n32-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n28-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n33-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n31-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n6-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n36-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n27-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n36-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n4-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n35-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n34-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n9-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n26-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n26-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n3-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n9-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n29-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n17-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n2-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n16-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n22-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n10-DC2g
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n21-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n18-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n20-DC1j
+STDOUT: 17:19:18 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n15-DC1j
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n19-DC1j
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n14-DC1j
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n44-DC1j
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n39-DC1j
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n37-DC1j
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n41-DC1j
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n38-DC1j
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n40-DC1j
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n42-DC1j
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n24-DC1j
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n23-DC1j
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n45-DC1j
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n15-DC2g
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n43-DC1j
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n25-DC2g
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n46-DC1j
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n37-DC2g
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n45-DC2g
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n42-DC2g
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n50-DC1j
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n50-DC2g
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n48-DC1j
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n23-DC2g
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n38-DC2g
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n49-DC2g
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n47-DC1j
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n41-DC2g
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n47-DC2g
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n40-DC2g
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n46-DC2g
+STDOUT: 17:19:19 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n49-DC1j
+STDOUT: 17:19:20 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n39-DC2g
+STDOUT: 17:19:20 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n44-DC2g
+STDOUT: 17:19:20 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n48-DC2g
+STDOUT: 17:19:20 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n43-DC2g
+STDOUT: 17:19:20 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n18-DC2g
+STDOUT: 17:19:20 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n14-DC2g
+STDOUT: 17:19:20 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n20-DC2g
+STDOUT: 17:19:20 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n24-DC2g
+STDOUT: 17:19:20 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n16-DC2g
+STDOUT: 17:19:20 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n1-DC2g
+STDOUT: 17:19:20 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n19-DC2g
+STDOUT: 17:19:20 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n22-DC2g
+STDOUT: 17:19:20 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n17-DC2g
+STDOUT: 17:19:20 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc1n25-DC1j
+STDOUT: 17:19:20 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dc2n21-DC2g
+STDOUT: 17:19:20 INFO  OmfEc::Experiment: Event triggered: 'ALL_NODES_UP, ALL_UP'
+STDOUT: 17:19:20 INFO  Object:  ------ Setup Traffic Shaping
+STDOUT: 17:19:21 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.c70cd47a-da23-4146-8015-c3a5aa0a55bd
+STDOUT: 17:19:21 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.c5a221e8-6050-4c8d-9768-5029509b2061
+STDOUT: 17:19:21 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.5ef488b1-1c9f-4237-a179-8fe3964fcd0b
+STDOUT: 17:19:22 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.40e90513-88f0-4a9c-a3a2-e4164c23d216
+STDOUT: 17:19:22 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.20e17315-b7f2-4e59-8016-0b65d13cb336
+STDOUT: 17:19:22 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.9d76f1cc-8156-4a2b-a1a0-51d795009725
+STDOUT: 17:19:22 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.a88667e3-220b-46b5-acc1-a8cb6a763183
+STDOUT: 17:19:22 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.ff224079-ccf5-49b7-a4e3-ff9ebe8e61a1
+STDOUT: 17:19:22 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.2c40de12-6813-4df9-abd7-cde8677cea4e
+STDOUT: 17:19:22 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.b9435222-ec7d-4a64-a2c5-00e8ade99880
+STDOUT: 17:19:22 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.5f754425-c93e-4c73-b0a9-93a91321db5d
+STDOUT: 17:19:22 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.8cdbdff9-65d7-4b88-adeb-efd834bde443
+STDOUT: 17:19:22 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.c3440156-4d12-43c0-99b8-da8004638fbe
+STDOUT: 17:19:22 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.0e531ca9-5dc6-4606-8d2b-e3826c4d5ae9
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.46d124a8-ce6b-4e23-883e-b406c77f5a61
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.eabb507e-bf42-476f-8ca4-732a86e21714
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.b746e440-c52e-4280-8e26-f207efa6ff7e
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.d9afdbdb-ef70-4d71-a264-69d94da10753
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.6095dcbe-53f7-4a6d-95c4-6009d753b1d8
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.70415b9a-5d5d-4a03-86e2-9e5c666709b6
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.3a05d78d-bbb2-4038-8af1-84fd5285fd40
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.df5c0c82-e545-4e54-97a9-4e3ad6d863db
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.be1d0ae2-e65f-4c8a-8e5c-1e34e8f1b277
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.d72aa545-4fd2-4d55-9a47-011635064fea
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.6b7cadee-c559-4876-afdb-039ea56d38d3
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.f78de900-f728-4b78-be80-9a0ca7fdf1b1
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.337d5fdd-2c04-4378-ab98-a4e1991707e9
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.8648ecd6-922e-4887-a822-882b3052f8b2
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.44a34237-da2d-43d6-8f3c-d20ee8190e19
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.8ee9797b-b360-48eb-b125-4077419cf197
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.4396a78a-6c36-47af-b789-f17d328fee7b
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.d0eeed04-8503-4faa-ae1f-b85e1bf2e612
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.6a7764f5-791e-4dc7-9623-40e3fd1f1157
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.25277d58-4ea8-4b0d-8b06-1af373113d47
+STDOUT: 17:19:24 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.cf0175b3-4233-454e-bced-68239e054a4c
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.02216694-3869-47fa-ab71-c98b26bea9e9
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.eeab2ea4-d388-4e00-8815-ee5f6ce6f17a
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.98d701a5-f2dc-406f-896c-70977abe60a0
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.eb9f32fd-f550-457e-9498-213987e2bf2f
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.cfc66d04-f3c2-4579-9178-a531c4c86dde
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.974c65de-4003-4f1f-8f3c-5d71602cd938
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.391fa0c7-f5f5-404f-9b59-e0dfb54bbc5e
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.52f5a808-83ed-4935-b534-53cadf7e19da
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.212b548c-3359-4c72-8fe0-4f3f648b7a13
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.ad6a3013-e005-469e-a6de-5c0f35242c43
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.fde1c496-fa2b-462d-804d-9331d545bac3
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.1d2c2ed7-92a8-4165-9b8e-31ad5781efbb
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.a27c2d35-7b24-40af-b137-c9ef5896181e
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.426732a0-44a1-4f84-8cb8-61e06eb0e44b
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.e719d4d0-00cb-49b1-a2ed-fcf81a8e26a2
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.bf92b46e-098b-4d23-9751-da0a1598495e
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.1fe19700-1627-4d90-a538-5246509e5724
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.5d59a12f-4890-4df7-8983-1b46d8a503e6
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.aab523ae-624c-46b1-89e4-ecc43df00500
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.1d88e3fc-515a-41c2-bc45-246dd97692c9
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.b00633a8-ecb8-4412-86d5-7ee936435975
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.f5863ce3-fbea-4eeb-b4d7-e30188b3bc40
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.8214ae65-ecf5-4914-b130-e8e0fccafe4d
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dbeed428-d656-4eed-932b-6f1fa0fa5bd0
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.2ae2606d-1f3b-4af4-b852-26f88f8aa2ee
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.20e743e8-a88e-49dc-a9e5-27f08d8c0b84
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.162edf8e-0b9d-48e3-8f98-afd9850477f8
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.d297e89c-02a9-484a-bd43-733f0dde5b79
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.059b2d4b-12b7-458e-a0f1-bb883a87cacc
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.0debd464-19d6-4c05-8f23-8f58c93812f7
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.e7dc3874-543e-4d65-8b31-28847d4046ce
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.75c44be1-05fd-4012-9718-06980f981a1f
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.98b7e8e1-5ac7-4d9e-b368-74ef80ccebb3
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.cf5cc1f9-398a-4acd-8754-422fb330664d
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.f2a9a024-0b56-46e6-8d90-9e4e79788a80
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.eeaa315c-bb59-4280-89c3-15ff94581959
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.f3f06024-f846-417c-ad5c-10c10974dba1
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.1147d6d0-4a60-4a7a-9c56-9e0a29654581
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.d61ab21e-e02d-42eb-af7d-8a570a971146
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.f025419e-c3f1-4b90-841c-2f7557706d3a
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.dd2db646-7876-490e-a4fa-b310ce98bae6
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.a7799f22-a478-4ed9-a49b-70dedadd2644
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.cb11d213-5795-4063-9cb4-0cba8dc20f68
+STDOUT: 17:19:25 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.a65431e7-de0f-4d74-bcd2-21e6b33d09be
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.b8592674-5591-4a53-ba93-b1390fab71be
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.60fe0ac0-cbbe-4461-8cc3-8009ca844bec
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.6d549fe7-7606-4f29-9999-0870162f16ea
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.6c2f8183-9990-4f29-972e-64efc4990c9d
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.49d71628-c417-4d0d-8c8f-b97b0eff48cd
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.69d1e489-574d-412c-92b6-ab19df2dcceb
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.636c07b6-272f-479b-9784-694fbeccd3e8
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.e5643f15-9cb9-441e-ab7b-5bf592d15659
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.3c4d9745-5962-4cce-8553-b263bb65eb33
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.94622282-9928-487a-9697-79081c1777fb
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.711cc29f-f59c-465c-9cbe-699729d08d11
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.7d0760c1-4bbc-4f1d-8ae2-d38825591cb5
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.2be3cd96-724f-4b4e-ab60-151b0cd42e65
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.cf4371d5-1338-4906-a436-c18d8dfc1d59
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.05ac5558-b296-4a70-abf5-857436331075
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.e589922c-b565-4d63-96e1-8b95a321e1c2
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.2130745c-3240-41f4-a794-99451e097b79
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.27fa2210-6bbb-49d6-9e36-ca1d5397ac1d
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.f8c1559f-f227-4b22-b240-66262d0850f4
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.7ff8ac0e-5cb1-40c3-a7fa-297010bc8383
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.ee98b54b-b5d9-4ff4-a2be-734061a6fa58
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.5dde83c1-39f2-4414-9641-7fc42cb6f0fe
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.126d3501-49d8-43cf-abef-09330f61208b
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.b9d1a859-7f2b-442b-b373-f2eeed1a1f0d
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.c17511a0-c13c-49f3-8c2f-8c7bfce38f11
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.219f9900-6f2d-4317-a833-d21823c91d40
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.a91968f4-5158-4747-a481-427b11d1d6f2
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.2e402150-c891-4c15-8eaa-87953debe795
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Newly discovered resource >> amqp://gimi3.casa.umass.edu/frcp.a5afecc8-28b1-44d2-8858-3ba7b5d7b065
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Event triggered: 'pcap_measurement_application_/sbin/modprobe sch_netem_created_a6d539c1-557c-4d96-8989-239f91034910'
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Event triggered: 'pcap_measurement_application_/sbin/modprobe ifb numifbs=10_created_9ff305f5-3167-48b0-9c4b-0bb76dfd62e8'
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Event triggered: 'pcap_measurement_application_/sbin/sysctl -w net.core.rmem_max=8388608_created_915ae086-23fc-46a9-86f4-90f46772d65e'
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Event triggered: 'pcap_measurement_application_/sbin/sysctl -w net.core.wmem_max=8388608_created_8c101cd2-0c05-481a-9902-1ae44c59ef2a'
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Event triggered: 'pcap_measurement_application_/sbin/sysctl -w net.core.netdev_max_backlog=2048_created_a5060841-40e5-46d1-a94f-8b14c3c822b3'
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Event triggered: 'pcap_measurement_application_/sbin/tc qdisc del dev vlan215 root_created_81c8087a-4877-48c7-a889-784d0bd772c6'
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Event triggered: 'pcap_measurement_application_/sbin/tc qdisc del dev vlan215 ingress_created_ec622cd8-4f06-4e1f-8e80-7e4823c19cff'
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Event triggered: 'pcap_measurement_application_/sbin/tc qdisc add dev vlan215 handle 130 root htb default 1_created_834edec7-6d85-4538-b44b-d10036034a6b'
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Event triggered: 'pcap_measurement_application_/sbin/tc class add dev vlan215 classid 130:1 parent 130 htb rate 10000000 ceil 10000000_created_cf9b07a0-ee56-4b7f-92b2-9ab22b36a771'
+STDOUT: 17:19:26 INFO  OmfEc::Experiment: Event triggered: 'pcap_measurement_application_/sbin/tc qdisc add dev vlan215 handle 120 parent 130:1 netem drop 0 delay 0us_created_45e5d3f0-cf58-44f0-be19-5a9ae81ade6a'
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT STARTED from app /sbin/modprobe sch_netem - msg: env -i /sbin/modprobe sch_netem 
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT STARTED from app /sbin/modprobe ifb numifbs=10 - msg: env -i /sbin/modprobe ifb numifbs=10 
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT STARTED from app /sbin/sysctl -w net.core.rmem_max=8388608 - msg: env -i /sbin/sysctl -w net.core.rmem_max=8388608 
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT STARTED from app /sbin/sysctl -w net.core.wmem_max=8388608 - msg: env -i /sbin/sysctl -w net.core.wmem_max=8388608 
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT STARTED from app /sbin/sysctl -w net.core.netdev_max_backlog=2048 - msg: env -i /sbin/sysctl -w net.core.netdev_max_backlog=2048 
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT STDOUT from app /sbin/sysctl -w net.core.rmem_max=8388608 - msg: net.core.rmem_max = 8388608
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT EXIT from app /sbin/modprobe sch_netem - msg: 0
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT STDOUT from app /sbin/sysctl -w net.core.netdev_max_backlog=2048 - msg: net.core.netdev_max_backlog = 2048
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT EXIT from app /sbin/modprobe ifb numifbs=10 - msg: 0
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT STARTED from app /sbin/tc qdisc del dev vlan215 root - msg: env -i /sbin/tc qdisc del dev vlan215 root 
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT STARTED from app /sbin/tc qdisc del dev vlan215 ingress - msg: env -i /sbin/tc qdisc del dev vlan215 ingress 
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT STARTED from app /sbin/tc qdisc add dev vlan215 handle 130 root htb default 1 - msg: env -i /sbin/tc qdisc add dev vlan215 handle 130 root htb default 1 
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT STDOUT from app /sbin/sysctl -w net.core.wmem_max=8388608 - msg: net.core.wmem_max = 8388608
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT EXIT from app /sbin/sysctl -w net.core.rmem_max=8388608 - msg: 0
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT STARTED from app /sbin/tc class add dev vlan215 classid 130:1 parent 130 htb rate 10000000 ceil 10000000 - msg: env -i /sbin/tc class add dev vlan215 classid 130:1 parent 130 htb rate 10000000 ceil 10000000 
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT STARTED from app /sbin/tc qdisc add dev vlan215 handle 120 parent 130:1 netem drop 0 delay 0us - msg: env -i /sbin/tc qdisc add dev vlan215 handle 120 parent 130:1 netem drop 0 delay 0us 
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT STDERR from app /sbin/tc qdisc del dev vlan215 ingress - msg: RTNETLINK answers: No such file or directory
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT EXIT from app /sbin/tc qdisc del dev vlan215 root - msg: 0
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT EXIT from app /sbin/tc qdisc del dev vlan215 ingress - msg: 2
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT EXIT from app /sbin/sysctl -w net.core.wmem_max=8388608 - msg: 0
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT EXIT from app /sbin/tc class add dev vlan215 classid 130:1 parent 130 htb rate 10000000 ceil 10000000 - msg: 0
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT EXIT from app /sbin/tc qdisc add dev vlan215 handle 120 parent 130:1 netem drop 0 delay 0us - msg: 0
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT EXIT from app /sbin/sysctl -w net.core.netdev_max_backlog=2048 - msg: 0
+STDOUT: 17:19:27 INFO  OmfEc: APP_EVENT EXIT from app /sbin/tc qdisc add dev vlan215 handle 130 root htb default 1 - msg: 0
+STDOUT: 17:19:30 INFO  Object:  ------ Start Group 1 VLCs
+STDOUT: 17:19:50 INFO  Object:  ------ Start Group 2 VLCs
+STDOUT: 17:20:10 INFO  Object:  ------ Start Group 3 VLCs
+STDOUT: 17:20:30 INFO  Object:  ------ Start Group 4 VLCs
+STDOUT: 17:23:30 INFO  Object:  ------ Now Stop the experiment
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_0 - msg: 0
+STDERR: INFO	Trying to reconnect to 'tcp:srv.mytestbed.net:3004'
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_0 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_0 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_1 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_1 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_1 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_1 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_1 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_1 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_1 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_1 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_0 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_0 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_0 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_0 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_0 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_0 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_0 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_1 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_1 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_1 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_1 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_1 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_1 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_0 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_0 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_0 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_1 - msg: 0
+STDOUT: 17:23:39 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_1 - msg: 0
+STDOUT: 17:23:42 INFO  OmfEc: APP_EVENT EXIT from app vlc_cxt_0 - msg: 0
+STDERR: INFO	Reconnected to 'tcp:srv.mytestbed.net:3004'
+STDOUT: 17:23:50 INFO  OmfEc::Experiment: Experiment: joedoe-2014-06-22T17-18-34 finished
+STDOUT: 17:23:50 INFO  OmfEc::Experiment: Release applications and network interfaces
+STDOUT: 17:23:50 INFO  OmfEc::Experiment: Exit in 15 seconds...
+STDOUT: 17:24:04 INFO  OmfEc::Experiment: OMF Experiment Controller 6.1.1 - Exit.
+STDOUT: 17:24:05 INFO  OmfCommon: Disconnecting...
+EXIT: 0

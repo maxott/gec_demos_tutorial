@@ -12,17 +12,18 @@
 loadOEDL('https://raw.githubusercontent.com/mytestbed/oml4r/master/omf/ping-oml2.rb')
 
 defProperty('target', "127.0.0.1", "Host to ping")
-
 number_of_resources = "4"
-resource_set_index = *("1"..number_of_resources)
-initial_set_index = resource_set_index.take(resource_set_index.length/2)
-backup_set_index = resource_set_index - initial_set_index
-failed_resources = []
-worker_prefix = "Worker"
-resource_prefix = "rc"
+group_prefix = "Worker_"
 
-resource_set_index.each do |index|
-  defGroup(worker_prefix+index, resource_prefix+index) do |group|
+# This may come from SliceService
+resources = number_of_resources.times.map {|i| 'rc' + i.to_s }
+
+initial_resources = resources[0 ... resources.length / 2]
+backup_resources = resources - initial_resources
+failed_resources = []
+
+resources.each do |res|
+  defGroup(group_prefix + res, res) do |group|
     group.addApplication("ping") do |app|
       app.setProperty('dest_addr', property.target)
       app.measure('ping', samples: 1)
@@ -30,36 +31,35 @@ resource_set_index.each do |index|
   end
 end
 
-defGroup("Production_Worker", initial_set_index.map { |i| worker_prefix+i } ) 
+defGroup("Initial_Worker", initial_resources ) 
 
 defEvent :APP_EXITED do |state|
-  exited = false
+  triggered = false
   state.each do |resource|
     next if failed_resources.include?(resource.uid)
     if (resource.type == 'application') && (resource.state == 'stopped')
       failed_resources << resource.uid
-      exited = true
+      triggered = true
     end
   end
-  exited
+  triggered
 end
 
 onEvent :APP_EXITED, consume_event = false do
-  backup_index = backup_set_index.pop
-  if backup_index.nil?
-    info "----------   No more backup resources are available!"
+  if res = backup_resources.pop
+    group(group_prefix + res).startApplications
   else
-    group(worker_prefix+backup_index).startApplications
+    info "----------   No more backup resources are available!"
   end
 end
 
 every 20 do
-  i = initial_set_index.pop
-  group(worker_prefix+i).stopApplications unless i.nil?
+  res = initial_resources.pop
+  group(group_prefix + res).stopApplications if res
 end
 
 onEvent :ALL_UP_AND_INSTALLED do 
-  group('Production_Worker').startApplications
+  group('Initial_Worker').startApplications
   after 60 do
     allGroups.stopApplications
     Experiment.done

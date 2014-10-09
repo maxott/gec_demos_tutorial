@@ -1,5 +1,15 @@
-# Simple OEDL Experiment for OMF
-# Starts a generator on a resource and collects results in OML
+# OEDL Script showing a user-defined event, which is triggered upon an  
+# experiment-generated measurements reaching a specific value
+#
+# - we have only 1 resources, which is running a sine signal generator at 2s period
+# - the experiment monitors the sine values from that generator every 1s
+# - when the experiment detects that the last sine value is above an arbitrary 
+#   threshold of 0.9, then it instruct the resource to send one ICMP ping packet
+#   to a target host.
+# - both measurements from the sine generator and the ping packets are then showed
+#   on 2 plots, where we should see that a new ping RTT value appears only when
+#   the sine value has peaked above 0.9
+#
 loadOEDL('https://raw.githubusercontent.com/mytestbed/oml4r/master/omf/signalgen.rb')
 loadOEDL('https://raw.githubusercontent.com/mytestbed/oml4r/master/omf/ping-oml2.rb')
 

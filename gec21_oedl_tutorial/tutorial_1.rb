@@ -31,7 +31,7 @@ resources.each do |res|
   end
 end
 
-defGroup("Initial_Worker", initial_resources ) 
+defGroup("Initial_Worker", initial_resources.map { |r| group_prefix + r } ) 
 
 defEvent :APP_EXITED do |state|
   triggered = false

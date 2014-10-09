@@ -12,7 +12,7 @@
 loadOEDL('https://raw.githubusercontent.com/mytestbed/oml4r/master/omf/ping-oml2.rb')
 
 defProperty('target', "127.0.0.1", "Host to ping")
-number_of_resources = "4"
+number_of_resources = 4
 group_prefix = "Worker_"
 
 # This may come from SliceService

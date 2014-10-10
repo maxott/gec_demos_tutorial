@@ -40,7 +40,7 @@ available_resources = getResources
 
 available_resources.each do |res|
   if res.type == 'node'
-    info "Got a new resource from Slice: #{res.client_id} - #{res.type}"
+    info "Got a new resource from Slice: #{res.omf_id} - #{res.type}"
     defGroup("Worker"+res.omf_id , res.omf_id) do |group|
       group.addApplication("ping") do |app|
         app.setProperty('dest_addr', property.target)

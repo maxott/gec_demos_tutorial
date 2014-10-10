@@ -22,7 +22,7 @@ peak_list = []
 
 defGroup('Generator', property.res1) do |group|
   group.addApplication("signalgen") do |app|
-    app.setProperty('frequency', 0.5)
+    app.setProperty('frequency', 1)
     app.measure('sin', samples: 1)
   end
 end
@@ -37,17 +37,17 @@ end
 
 # Note: 
 # Remember that event checking frequency > 2 * frequency of observed phenomenon
-defEvent(:SINE_ABOVE_THRESHOLD, every: 1) do
+defEvent(:SINE_ABOVE_THRESHOLD, every: 0.5) do
 
   # Query for some measurements...
   # returns an array where each element is a hash representing a row from the DB
-  data = ms('sin').select { [ :oml_ts_client, :value ] }
-
+  query = ms('sin').select { [ :oml_ts_client, :value ] }
+  data = defQuery(query)
   # Alternatively the above line could also be:
   # data = defQuery('select oml_ts_client, value from signalgen_sin')
   #
   # Also if you want to rename 'oml_ts_client' to 'ts'
-  # data = ms('sin').select { [ oml_ts_client.as(:ts), :value ] } 
+  # query = ms('sin').select { [ oml_ts_client.as(:ts), :value ] } 
   # data = defQuery('select oml_ts_client as ts, value from signalgen_sin')
 
   triggered = false
@@ -68,7 +68,7 @@ end
 onEvent(:ALL_UP_AND_INSTALLED) do 
   info "Starting a remote signal generator"
   group('Generator').startApplications
-  after 80 do
+  after 60 do
     group('Generator').stopApplications
     Experiment.done
   end

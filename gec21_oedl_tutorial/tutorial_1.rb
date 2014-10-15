@@ -11,13 +11,20 @@
 #
 loadOEDL('https://raw.githubusercontent.com/mytestbed/oml4r/master/omf/ping-oml2.rb')
 
+defProperty('res1', "rc1", "1st resource")
+defProperty('res2', "rc2", "2nd resource")
+defProperty('res3', "rc3", "3rd resource")
+defProperty('res4', "rc4", "4th resource")
 defProperty('target', "127.0.0.1", "Host to ping")
-number_of_resources = 4
-group_prefix = "Worker_"
 
 # This may come from SliceService
-resources = number_of_resources.times.map {|i| 'rc' + i.to_s }
+resources = [ property.res1, 
+              property.res2,
+              property.res3,
+              property.res4
+            ]
 
+group_prefix = "Worker_"
 initial_resources = resources[0 ... resources.length / 2]
 backup_resources = resources - initial_resources
 failed_resources = []
@@ -45,7 +52,7 @@ defEvent :APP_EXITED do |state|
   triggered
 end
 
-onEvent :APP_EXITED, consume_event = false do
+onEvent :APP_EXITED, consume_event: false do
   if res = backup_resources.pop
     group(group_prefix + res).startApplications
   else

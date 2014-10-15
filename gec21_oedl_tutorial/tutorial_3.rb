@@ -36,7 +36,7 @@ defProperty('target', "127.0.0.1", "Host to ping")
 #     "urn": "urn:publicid:IDN+instageni.foo.edu+sliver+1234",
 #     "type": "node"
 #
-available_resources = getResources
+available_resources = getResources()
 
 available_resources.each do |res|
   if res.type == 'node'

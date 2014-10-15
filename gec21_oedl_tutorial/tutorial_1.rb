@@ -21,13 +21,13 @@ defProperty('target', "127.0.0.1", "Host to ping")
 resources = [ property.res1, 
               property.res2,
               property.res3,
-              property.res4
-            ]
-
-group_prefix = "Worker_"
+              property.res4 ]
+              
 initial_resources = resources[0 ... resources.length / 2]
 backup_resources = resources - initial_resources
 failed_resources = []
+group_prefix = "Worker_"
+
 
 resources.each do |res|
   defGroup(group_prefix + res, res) do |group|

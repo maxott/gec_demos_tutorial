@@ -26,53 +26,56 @@ For specific help on using LabWiki, please refer to the [LabWiki introduction pa
 **The OEDL experiment description**
 
 - First, if you have not done it yet, login into LabWiki
-- Load the 'gec21_exp1' experiment file in the 'Prepare' Panel of LabWiki. This file contains the OEDL script for this 1st experiment
-- If you are not reading this using LabWiki, you can view this OEDL file online at: [http://git.io/AcVU1g](http://git.io/AcVU1g)
+- Load the 'gec21_exp2' experiment file in the 'Prepare' Panel of LabWiki. This file contains the OEDL script for this 1st experiment
+- If you are not reading this using LabWiki, you can view this OEDL file online at: [http://git.io/UVUNag](http://git.io/UVUNag)
 
-![Experiment 1 OEDL Extract](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tutorial_1.fig2.png)
+![Experiment 2 OEDL Extract](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tutorial_2.fig2.png)
 
 **Walk-through the OEDL experiment description**
 
 1. First, a reminder that all details on OEDL are available in the [OEDL reference page](http://mytestbed.net/projects/omf6/wiki/OEDLOMF6)
 
-2. [**loadOEDL**](http://mytestbed.net/projects/omf6/wiki/OEDLOMF6#loadOEDL) (line 12). This command is used to include in your OEDL experiment other external OEDL scripts. In this example, we are loading the definition of a ping application, which has been instrumented with [OML](http://oml.mytestbed.net)
+2. [**loadOEDL**](http://mytestbed.net/projects/omf6/wiki/OEDLOMF6#loadOEDL) (line 16-17). This command includes in your OEDL experiment other external OEDL scripts. In this example, we are loading the definition of a signal generator and ping application (both instrumented with [OML](http://oml.mytestbed.net))
 
-3. [**defProperty**](http://mytestbed.net/projects/omf6/wiki/OEDLOMF6#defProperty-38-property-38-ensureProperty) (line 14-18). This command is used to define experiment properties (aka variables), you can set the values of these properties as parameters for each experiment trials, and access them throughout the entire experiment run. In this example, we are defining 5 properties, to hold the names of each of the resources that we will use and the target for the ping application.
+3. [**defProperty**](http://mytestbed.net/projects/omf6/wiki/OEDLOMF6#defProperty-38-property-38-ensureProperty) (line 19-20). This command defines experiment properties (aka variables), you can set the values of these properties as parameters for each experiment trials, and access them throughout the entire experiment run. In this example, we are defining 2 properties, to hold the name of the resource to use and the target for the ping application.
 
-4. **Some internal variables** (line 21-29). These are classic simple Ruby commands that allow us put all our resource in a single list, then split that list into one holding the 'initial' resources, and one holding the 'backup' resources. As opposed to the above defProperty variables, these internal variables cannot be set at the start of each experiment trial (without having to change the content of the OEDL script itself)
+4. **Some internal variables** (line 21). This is a simple Ruby command that defines an array to hold the list of signal peaks throughout the experiment's execution. As opposed to the above defProperty variables, internal variables cannot be set at the start of each experiment trial (without having to change the content of the OEDL script itself)
 
-5. [**defGroup**](http://mytestbed.net/projects/omf6/wiki/OEDLOMF6#defGroup) (line 32-41). This command is used to define a group of resources which we will use in this experiment. A group may contain many resources and a resource may be included in many groups. This commands may also be used to associate a set of configurations and applications to all resources in a group. In this example, we first define 4 groups (e.g. 'Worker_X'), each with only one resource, then we are associating an instrumented ping to the unique resource in each group. This association is done using the [**addApplication**](http://mytestbed.net/projects/omf6/wiki/OEDLOMF6#defGroup). Furthermore, we also define a final group ('Initial_Worker'), which will contain the 'Worker' groups with the initial resources.
+5. [**defGroup**](http://mytestbed.net/projects/omf6/wiki/OEDLOMF6#defGroup) (line 23-36). This command is used to define a group of resources which we will use in this experiment. A group may contain many resources or any other group, and a resource may be included in many groups. This commands may also be used to associate a set of configurations and applications to all resources in a group. In this example, we define a first group 'Generator' with only one resource, then we associate an instrumented signal generator to it. This association is done using the [**addApplication**](http://mytestbed.net/projects/omf6/wiki/OEDLOMF6#defGroup). Furthermore, we also define a second group 'Pinger', which contains the same resource as the first group, but which has an instrumented ping application associated to it.
 
-6. [**defEvent**](http://mytestbed.net/projects/omf6/wiki/OEDLOMF6#defEvent) (line 23-53). This command defines the name of a user's custom event and the block of conditions which will be used to check if this event should be triggered.
-    - Within the condition block we have access to the 'state' variable, which holds a array. Each element of that array represents a resource and is a hash of key/value pairs corresponding to each properties of that resource.
-    - In this example, in our condition block we check for each resource if it failed before. If not we check if is an application and if it is currently stopped. If so then we add it to the list of failed resource, and we trigger the event.
+6. [**defEvent**](http://mytestbed.net/projects/omf6/wiki/OEDLOMF6#defEvent) (line 40-62). This command defines the name of a user's custom event and the block of conditions which will be used to check if this event should be triggered.
+    - First since the measurements are being collected as the experiment is running, we need to specify how frequently the Experiment Controller should query the collected measurements to check for the conditions. This is set using the 'every:' parameter of **defEvent** (in second).
+    - Within the condition block we have two different syntax to access some of the collected measurements:
+        - one option (line 51) is to use the SQL syntax to directly write a query for the measurement database using the command **defQuery**. As many experimenter may be familiar with SQL, this option gives them a very flexible mechanism to access any collected data. The caveat is that they need to know the names of the database tables corresponding to their experiment's measurement points. This is usually of the form "ApplicationName_MeasurementPoint" (e.g. signalgen_sin in line 51.
+        - the other option (line 44-45) is to use a [Ruby Sequel syntax](http://sequel.jeremyevans.net/rdoc/files/doc/querying_rdoc.html). The method **ms(arg)** returns a Measurement Point model, on which any Sequel querying methods can be applied. The resulting query is then passed to the **defQuery** command.
+    - The returned data is an array where each element represents a measurement sample. Each sample is in turn a hash where each key represents a metric of that sample. The remaining of the condition block in this example (line 53-59) checks if the absolute value of the last sample is greather than 0.99, and triggers the event if so.
 
-7. [**onEvent**](http://mytestbed.net/projects/omf6/wiki/OEDLOMF6#onEvent) (line 55-61). This command declares the set of actions to perform when a specific event is triggered. In this example, the event is our previously defined "APP_EXITED". The actions to perform in this case is to select a backup resource and start its ping application. There is another **onEvent** declaration further (line 68-74), for the event "APP_UP_AND_INSTALLED", i.e. when all resources are ready to receive commands and all applications associated to them are installed. When this event triggers, we start the ping application on the resources within the 'Initial_Worker' group, then after 60 seconds we stop all applications and terminate the experiment trial.
+7. [**onEvent**](http://mytestbed.net/projects/omf6/wiki/OEDLOMF6#onEvent) (line 64-66). This command declares the set of actions to perform when a specific event is triggered. In this example, the event is our previously defined "SINE_ABOVE_THRESHOLD". The actions to perform in this case is to select start a ping application. There is another **onEvent** declaration further (line 68-75), for the event "APP_UP_AND_INSTALLED", i.e. when all resources are ready to receive commands and all applications associated to them are installed. When this event triggers, we start the signal generator application on the resource within the 'Generator' group, then after 60 seconds we stop all applications and terminate the experiment trial.
 
-8. [**defGraph**](http://mytestbed.net/projects/omf6/wiki/OEDLOMF6#defGraph) (line 76-83). This commands defines the graphs that will be displayed while the experiment trial is running. In this example, we define 1 graph showing the RTT values from the ping applications against time for each resources in our experiment. This graph will be drawn using measurements enabled in the previous defGroup blocks.
+8. [**defGraph**](http://mytestbed.net/projects/omf6/wiki/OEDLOMF6#defGraph) (line 77-91). This commands defines the graphs that will be displayed while the experiment trial is running. In this example, we define one graph showing the generated sine values against time, and one table showing the timestamp and RTT of from each sent ICMP ping packet. These graph and table will be updated using measurements enabled in the previous defGroup blocks.
 
 
-# Part 2 - Execute
+# Step 2 - Execute
 
 - After reviewing this OEDL experiment description, drag-and-drop it from the "Prepare" panel to the "Execute" panel, as described on the [LabWiki introduction page]([http://groups.geni.net/geni/wiki/GEC21Agenda/OEDL/Introduction#Execute)
-- Set the values of the properties res1' to 'res4' to the names of your allocated resources. Similarly set the 'Slice' property to your own slice.
+- Set the values of the properties res1' to the name of your allocated resource. Similarly set the 'Slice' property to your own slice.
 (You can optionally decide to give a name to your experiment, if not LabWiki will assign a default unique name to it.)
 - Click on the "Start Experiment" button. You will soon see output messages under the "Logging" section. Some of these messages are from the OMF Experiment Controller, which interprets your OEDL experiment description and sends corresponding commands to the resources. Other messages are from the resources themselves (either the VM nodes or the applications), reporting on configuration and command results.
 
-![Experiment 1 Execute Screenshot](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tutorial_1.fig3.png)
+![Experiment 2 Execute Screenshot](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tutorial_2.fig3.png)
 
 - Above that "Logging" section, you should soon see the graph, which we defined in the OEDL experiment description. It is drawn dynamically as measurements are collected from the resources.
 
-![Experiment 1 Running Screenshot](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tutorial_1.fig4.png)
+![Experiment 2 Running Screenshot](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tutorial_2.fig4.png)
 
 
-# Part 3 - Finish
+# Step 3 - Finish
 
-- A message in the "Execute" panel will appear to inform you that the experiment execution has finished. At this stage, you should have the complete graphs for this experiment in that panel, which should look as follows.
+- A message in the "Execute" panel will appear to inform you that the experiment execution has finished. At this stage, you should have the complete graph and table for this experiment in that panel, which should look as follows.
 
-![Experiment 1 Result Screenshot](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tutorial_1.fig5.png)
+![Experiment 2 Result Screenshot](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tutorial_2.fig5.png)
 
-- You may interact to with these graphs, e.g. tick or un-tick the legend's keys to display only results from the first or/and second resource, hover the pointer above a graph point to display the underlying data point, drag-and-drop the graph via its icon to the "Plan" panel as described in the [LabWiki introduction page](http://groups.geni.net/geni/wiki/GEC21Agenda/OEDL/Introduction#Execute)
+- You may interact to with the graph, e.g. tick or un-tick the legend's keys to display only results from the first or/and second resource, hover the pointer above a graph point to display the underlying data point, drag-and-drop the graph via its icon to the "Plan" panel as described in the [LabWiki introduction page](http://groups.geni.net/geni/wiki/GEC21Agenda/OEDL/Introduction#Execute)
 
 - The complete data set holding the measurements collected from this experiment is stored in an SQL database. You can retrieve a copy of that database by clicking on the 'Database Dump' buttom in the 'Execute' panel. The format of that copy is depends on your LabWiki's deployment configuration. It could be an iRODS dump, a Zipped archive of CSV files, a SQLite3 dump or a PostgreSQL dump. By default, it is a PostgreSQL dump.
 

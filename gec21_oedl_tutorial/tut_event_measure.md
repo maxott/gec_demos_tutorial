@@ -26,7 +26,7 @@ For specific help on using LabWiki, please refer to the [LabWiki introduction pa
 **The OEDL experiment description**
 
 - First, if you have not done it yet, login into LabWiki
-- Load the 'tut_event_measure' experiment file in the 'Prepare' Panel of LabWiki. This file contains the OEDL script for this 1st experiment
+- Load the 'tut_event_measure.oedl' experiment file in the 'Prepare' Panel of LabWiki. This file contains the OEDL script for this 1st experiment
 - If you are not reading this using LabWiki, you can view this OEDL file online at: [http://git.io/UVUNag](http://git.io/UVUNag)
 
 ![Experiment 2 OEDL Extract](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tut_event_measure.fig2.png)

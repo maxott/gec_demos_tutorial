@@ -17,7 +17,7 @@ In this experiment:
 - we finally display both measurements from the sine generator and the ICMP ping packets, as a graph showing the sine values and a table showing ping's timestamp and RTT, respectively. Thus the table's number of rows should be equal to the graph's number of positive and negative peaks. 
 
 
-![Experiment 2 Overview](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tutorial_2.fig1.png)
+![Experiment 2 Overview](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tut_event_measure.fig1.png)
 
 # Step 1 - Design/Setup 
 
@@ -26,10 +26,10 @@ For specific help on using LabWiki, please refer to the [LabWiki introduction pa
 **The OEDL experiment description**
 
 - First, if you have not done it yet, login into LabWiki
-- Load the 'gec21_exp2' experiment file in the 'Prepare' Panel of LabWiki. This file contains the OEDL script for this 1st experiment
+- Load the 'tut_event_measure' experiment file in the 'Prepare' Panel of LabWiki. This file contains the OEDL script for this 1st experiment
 - If you are not reading this using LabWiki, you can view this OEDL file online at: [http://git.io/UVUNag](http://git.io/UVUNag)
 
-![Experiment 2 OEDL Extract](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tutorial_2.fig2.png)
+![Experiment 2 OEDL Extract](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tut_event_measure.fig2.png)
 
 **Walk-through the OEDL experiment description**
 
@@ -62,18 +62,18 @@ For specific help on using LabWiki, please refer to the [LabWiki introduction pa
 (You can optionally decide to give a name to your experiment, if not LabWiki will assign a default unique name to it.)
 - Click on the "Start Experiment" button. You will soon see output messages under the "Logging" section. Some of these messages are from the OMF Experiment Controller, which interprets your OEDL experiment description and sends corresponding commands to the resources. Other messages are from the resources themselves (either the VM nodes or the applications), reporting on configuration and command results.
 
-![Experiment 2 Execute Screenshot](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tutorial_2.fig3.png)
+![Experiment 2 Execute Screenshot](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tut_event_measure.fig3.png)
 
 - Above that "Logging" section, you should soon see the graph, which we defined in the OEDL experiment description. It is drawn dynamically as measurements are collected from the resources.
 
-![Experiment 2 Running Screenshot](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tutorial_2.fig4.png)
+![Experiment 2 Running Screenshot](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tut_event_measure.fig4.png)
 
 
 # Step 3 - Finish
 
 - A message in the "Execute" panel will appear to inform you that the experiment execution has finished. At this stage, you should have the complete graph and table for this experiment in that panel, which should look as follows.
 
-![Experiment 2 Result Screenshot](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tutorial_2.fig5.png)
+![Experiment 2 Result Screenshot](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tut_event_measure.fig5.png)
 
 - You may interact to with the graph, e.g. hover the pointer above a graph point to display the underlying data point, drag-and-drop the graph via its icon to the "Plan" panel as described in the [LabWiki introduction page](http://groups.geni.net/geni/wiki/GEC21Agenda/OEDL/Introduction#Execute)
 

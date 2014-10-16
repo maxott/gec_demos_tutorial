@@ -57,7 +57,7 @@ For specific help on using LabWiki, please refer to the [LabWiki introduction pa
 # Step 2 - Execute
 
 - After reviewing this OEDL experiment description, drag-and-drop it from the "Prepare" panel to the "Execute" panel, as described on the [LabWiki introduction page]([http://groups.geni.net/geni/wiki/GEC21Agenda/OEDL/Introduction#Execute)
-- Set the values of the properties res1' to 'res4' to the names of your allocated resources. Similarly set the 'Slice' property to your own slice.
+- Set the values of the properties 'res1' to 'res4' to the names of your allocated resources. Similarly set the 'Slice' property to your own slice.
 (You can optionally decide to give a name to your experiment, if not LabWiki will assign a default unique name to it.)
 - Click on the "Start Experiment" button. You will soon see output messages under the "Logging" section. Some of these messages are from the OMF Experiment Controller, which interprets your OEDL experiment description and sends corresponding commands to the resources. Other messages are from the resources themselves (either the VM nodes or the applications), reporting on configuration and command results.
 

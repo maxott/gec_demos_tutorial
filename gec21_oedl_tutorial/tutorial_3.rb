@@ -13,31 +13,31 @@ loadOEDL('https://raw.githubusercontent.com/mytestbed/oml4r/master/omf/ping-oml2
 defProperty('target', "127.0.0.1", "Host to ping")
 
 # getResources returns an array of resources (previously added to the Slice)
-# each element of that array has attrbitues similar to the following:
+# each element of that array has attributes similar to the following:
 # "client_id": "some_id_for_that_node",
-#     "status": "ready",
-#     "omf_id": "the_id_by_which_that_node_can_be_used_in_an_OEDL_script",
+# "status": "ready",
+# "omf_id": "the_id_by_which_that_node_can_be_used_in_an_OEDL_script",
+# "sliver_id": "urn:publicid:IDN+instageni.foo.edu+sliver+1234",
+# "ssh_login": {
+#   "hostname": "pc1.instageni.foo.edu",
+#   "port": "12345"
+# },
+# "interfaces": {
+#   "some_id_for_that_node:if0": {
+#     "client_id": "some_id_for_that_node:if0",
 #     "sliver_id": "urn:publicid:IDN+instageni.foo.edu+sliver+1234",
-#     "ssh_login": {
-#       "hostname": "pc1.instageni.foo.edu",
-#       "port": "12345"
-#     },
-#     "interfaces": {
-#       "some_id_for_that_node:if0": {
-#         "client_id": "some_id_for_that_node:if0",
-#         "sliver_id": "urn:publicid:IDN+instageni.foo.edu+sliver+1234",
-#         "mac_address": "01234567890a",
-#         "ip": [
-#           {
-#             "address": "10.10.1.1",
-#             "type": "ipv4"
-#           }
-#         ]
+#     "mac_address": "01234567890a",
+#     "ip": [
+#       {
+#         "address": "10.10.1.1",
+#         "type": "ipv4"
 #       }
-#     },
-#     "urn": "urn:publicid:IDN+instageni.foo.edu+sliver+1234",
-#     "type": "node"
-#
+#     ]
+#   }
+# },
+# "urn": "urn:publicid:IDN+instageni.foo.edu+sliver+1234",
+# "type": "node"
+
 available_resources = getResources()
 nodes = available_resources.map { |res| res.omf_id if res.type == 'node' }.compact
 random_nodes = nodes.sample(2)
@@ -55,7 +55,7 @@ end
 
 onEvent :ALL_UP_AND_INSTALLED do
   allGroups.startApplications
-  after 20 do
+  after 40 do
     allGroups.stopApplications
     Experiment.done
   end

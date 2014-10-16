@@ -61,7 +61,7 @@ defEvent(:SINE_ABOVE_THRESHOLD, every: 0.5) do
   triggered
 end
 
-onEvent(:SINE_ABOVE_THRESHOLD, consume_event = false) do
+onEvent :SINE_ABOVE_THRESHOLD, consume_event: false do
   group('Pinger').startApplications
 end
 

@@ -1,25 +1,23 @@
-title: GEC21 - OEDL Tutorial 1
+title: GEC21 - OEDL Tutorial 2
 
-# GEC21 - OEDL Tutorial 1
+# GEC21 - OEDL Tutorial 2
 
 # Overview
 
-This first part shows how to design, execute, and view the results of an experiment, which dynamically reacts to a user-defined event.
+This second part shows how to design, execute, and view the results of an experiment, which dynamically reacts to measurements that are collected during its execution.
 
-This experiment demonstrate OEDL's capability to allow user to define events which will trigger based on the state of the used resources. In other words, if one or more resources reaches a specific state, the event will trigger and some user-defined tasks will be executed.
+This experiment demonstrate OEDL's capability to allow user to define events which will trigger based on measurements produced by resources invovled in the experiment. In other words, if one or more collected measurements reach a specific condition, then the event will trigger and some user-defined tasks will be executed.
 
 In this experiment:
 
-- we start with 4 resources, i.e. 2 initial 'workers' and 2 backup ones
-- all workers have a ping application associated to them
-- the 2 initial workers starts their ping applications
-- we define a custom event which will trigger when a running ping application is stopped. The Experiment Controller will periodically monitor the state of all resources to check for this condition
-- furthermore, we define a set of tasks to execute if the event is triggered. In this case, the task is to start a new ping application on one of the backup resources.
-- every 20 seconds, we purposely stop the ping application running on one of the initial workers
-- we display a graph of the ping's RTT for each of the 4 resources and observe that a new ping instance starts when a previously running one is stopped
+- we use only 1 resources, which will run a sine signal generator
+- this signal generators is configured to collect and report the sine values
+- we define a custom event which will trigger when the absolute value of the last measurement is above an arbitrary threshold of 0.99. The Experiment Controller will periodically monitor the collected measurements to check for this condition
+- we also define some tasks to execute when this event is triggered. In this case, the task is to send one ICMP ping packet to a target host (using the same instrumented ping application as in the first part of this tutorial).
+- we finally display both measurements from the sine generator and the ICMP ping packets, as a graph showing the sine values and a table showing ping's timestamp and RTT, respectively. Thus the table's number of rows should be equal to the graph's number of positive and negative peaks. 
 
 
-![Experiment 1 Overview](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tutorial_1.fig1.png)
+![Experiment 2 Overview](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tutorial_2.fig1.png)
 
 # Step 1 - Design/Setup 
 
@@ -54,7 +52,7 @@ For specific help on using LabWiki, please refer to the [LabWiki introduction pa
 8. [**defGraph**](http://mytestbed.net/projects/omf6/wiki/OEDLOMF6#defGraph) (line 76-83). This commands defines the graphs that will be displayed while the experiment trial is running. In this example, we define 1 graph showing the RTT values from the ping applications against time for each resources in our experiment. This graph will be drawn using measurements enabled in the previous defGroup blocks.
 
 
-# Step 2 - Execute
+# Part 2 - Execute
 
 - After reviewing this OEDL experiment description, drag-and-drop it from the "Prepare" panel to the "Execute" panel, as described on the [LabWiki introduction page]([http://groups.geni.net/geni/wiki/GEC21Agenda/OEDL/Introduction#Execute)
 - Set the values of the properties res1' to 'res4' to the names of your allocated resources. Similarly set the 'Slice' property to your own slice.
@@ -68,7 +66,7 @@ For specific help on using LabWiki, please refer to the [LabWiki introduction pa
 ![Experiment 1 Running Screenshot](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tutorial_1.fig4.png)
 
 
-# Step 3 - Finish
+# Part 3 - Finish
 
 - A message in the "Execute" panel will appear to inform you that the experiment execution has finished. At this stage, you should have the complete graphs for this experiment in that panel, which should look as follows.
 

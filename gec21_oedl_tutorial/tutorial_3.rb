@@ -3,8 +3,10 @@
 # executed.
 #
 # - we start by getting the list of resources provisioned for our slice
-# - then for each resource, we check that it is a 'node' type of resoures
-# - if so, we create a new group for that node resources & add a ping app to it
+# - we filter that list of resources to only retain the 'node' ones
+# - then we randomly pick a few of these nodes
+# - finally, we create a new group with these randomly picked nodes and
+#    associate a ping app to them
 #
 loadOEDL('https://raw.githubusercontent.com/mytestbed/oml4r/master/omf/ping-oml2.rb')
 
@@ -37,23 +39,33 @@ defProperty('target', "127.0.0.1", "Host to ping")
 #     "type": "node"
 #
 available_resources = getResources()
+nodes = available_resources.map { |res| res.omf_id if res.type == 'node' }.compact
+random_nodes = nodes.sample(2)
 
-available_resources.each do |res|
-  if res.type == 'node'
-    info "Got a new resource from Slice: #{res.omf_id} - #{res.type}"
-    defGroup("Worker"+res.omf_id , res.omf_id) do |group|
-      group.addApplication("ping") do |app|
-        app.setProperty('dest_addr', property.target)
-        app.measure('ping', samples: 1)
-      end
-    end
+info "------ Found #{available_resources.length} available resources"
+info "------ Including #{nodes.length} available nodes"
+random_nodes.map { |n| info "------ Randomly picked: #{n}" }
+
+defGroup("Random_Workers", random_nodes) do |group|
+  group.addApplication("ping") do |app|
+    app.setProperty('dest_addr', property.target)
+    app.measure('ping', samples: 1)
   end
 end
 
-onEvent :ALL_UP_AND_INSTALLED do 
+onEvent :ALL_UP_AND_INSTALLED do
   allGroups.startApplications
   after 20 do
     allGroups.stopApplications
     Experiment.done
   end
+end
+
+defGraph 'Workers' do |g|
+  g.ms('ping').select {[ oml_ts_client.as(:time), :rtt, oml_sender_id.as(:name) ]}
+  g.caption "Ping RTT vs Time, for each Workers"
+  g.type 'line_chart3'
+  g.mapping :x_axis => :time, :y_axis => :rtt, :group_by => :name
+  g.xaxis :legend => 'time [s]'
+  g.yaxis :legend => 'Ping RTT [ms]', :ticks => {:format => 's'}
 end

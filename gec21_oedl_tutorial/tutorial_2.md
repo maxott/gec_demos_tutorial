@@ -75,7 +75,7 @@ For specific help on using LabWiki, please refer to the [LabWiki introduction pa
 
 ![Experiment 2 Result Screenshot](https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec21_oedl_tutorial/tutorial_2.fig5.png)
 
-- You may interact to with the graph, e.g. tick or un-tick the legend's keys to display only results from the first or/and second resource, hover the pointer above a graph point to display the underlying data point, drag-and-drop the graph via its icon to the "Plan" panel as described in the [LabWiki introduction page](http://groups.geni.net/geni/wiki/GEC21Agenda/OEDL/Introduction#Execute)
+- You may interact to with the graph, e.g. hover the pointer above a graph point to display the underlying data point, drag-and-drop the graph via its icon to the "Plan" panel as described in the [LabWiki introduction page](http://groups.geni.net/geni/wiki/GEC21Agenda/OEDL/Introduction#Execute)
 
 - The complete data set holding the measurements collected from this experiment is stored in an SQL database. You can retrieve a copy of that database by clicking on the 'Database Dump' buttom in the 'Execute' panel. The format of that copy is depends on your LabWiki's deployment configuration. It could be an iRODS dump, a Zipped archive of CSV files, a SQLite3 dump or a PostgreSQL dump. By default, it is a PostgreSQL dump.
 

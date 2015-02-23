@@ -1,0 +1,19 @@
+# NO CIDR NOTATION SUPPORT!!!
+# Convention: 
+# - net_A_B_C_D for the network IP address A.B.C.D
+# - net_A_B_C for the network IP address A.B.C.0
+# - net_A_B for the network IP address A.B
+# - net_A for the network IP address A
+# - default for everyting else
+#
+net_10_15:
+  status: 303
+  location: 'http://www.nicta.com.au'
+
+net_203_143_174:
+  status: 303
+  location: 'http://www.w3.org'
+
+default:
+  status: 303
+  location: 'http://www.google.com.au'

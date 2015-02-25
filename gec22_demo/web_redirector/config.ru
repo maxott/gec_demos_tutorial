@@ -1,4 +1,4 @@
-require './redirector'
+require '/root/web-redirector/redirector'
 
 use Rack::ContentLength
 

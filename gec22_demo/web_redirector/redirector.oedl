@@ -1,33 +1,37 @@
-# Copyright (c) 2012 National ICT Australia Limited (NICTA).
+# Copyright (c) 2015 National ICT Australia Limited (NICTA).
 # This software may be used and distributed solely under the terms of the MIT license (License).
 # You should find a copy of the License in LICENSE.TXT or at http://opensource.org/licenses/MIT.
 # By downloading or using this software you accept the terms and the liability disclaimer in the License.
 
-# This is the OMF6 Application Definition for the OML-Instrumented VLC app,
-# which was contributed by NYPoly [1]. The OML Measurement Point described in 
-# this app definition are the ones defined in the header file of the source code
-# available at [1].
+# This is the OMF6 Application Definition for the simple Ruby-based web redirector
 #
-# As described by the doc at [1], the current limitation of this OML-enabled
-# VLC app is that it cannot report at the same time both the 'usual' VLC stats
-# and the DASH-specific stats. Thus, you need to choose at runtime which set of
-# stats to enable. When used with OMF6 via this app definition, this selection
-# is done by setting/unsetting the 'enable_classic_measurement' property.
-#
-# [1] http://witestlab.poly.edu/site/page/oml-enabled-applications
+# First run the 'web_redirector_config' to write the config yaml file for the 
+# Rack application. Then run 'web_redirector' to start the Rack application which
+# does the redirection
+
+defApplication('web_redirector_config') do |app|
+  app.quiet = true
+  app.binary_path = "/root/web-redirector/configure"
+  app.description = "Configuration for a Simple Ruby-based web-redirector" 
+  app.defProperty(
+    "config", 
+    "YAML-formated config string", 
+    "",
+    :type => :string, :dynamic => false)
+end
 
 defApplication('web_redirector') do |app|
   app.quiet = true
-  app.binary_path = "/root/web-redirector/redirector"
+  app.binary_path = "/usr/local/bin/rackup"
   app.description = "Simple Ruby-based web-redirector" 
   app.defProperty(
     "host", 
     "Address to listen to", 
     "", 
-    :order => 1, :type => :string, :dynamic => false)
+    :order => 1, :type => :string, :dynamic => false, :mandatory => true, :default => 'localhost')
   app.defProperty(
-    "config", 
-    "YAML-formated config string", 
+    "rackapp", 
+    "Path to the redirector Rack Application", 
     "",
-    :order => 2, :type => :string, :dynamic => false)
+    :order => 2, :type => :string, :dynamic => false, :mandatory => true, :default => '/root/web-redirector/config.ru')
 end

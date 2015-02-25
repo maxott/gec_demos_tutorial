@@ -1,0 +1,3 @@
+#!/bin/bash
+CONFIG=$1
+echo -e "$CONFIG" >/root/web-redirector/config.yaml

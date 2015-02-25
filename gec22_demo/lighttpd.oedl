@@ -1,0 +1,23 @@
+# Copyright (c) 2015 National ICT Australia Limited (NICTA).
+# This software may be used and distributed solely under the terms of the MIT license (License).
+# You should find a copy of the License in LICENSE.TXT or at http://opensource.org/licenses/MIT.
+# By downloading or using this software you accept the terms and the liability disclaimer in the License.
+
+# This is a simple OMF6 Application Definition for the lighttpd web server
+#
+
+defApplication('lighttpd') do |app|
+  app.quiet = true
+  app.binary_path = "/etc/init.d/lighttpd stop ; /usr/sbin/lighttpd"
+  app.description = "The lighttpd web server" 
+  app.defProperty(
+    "foreground", 
+    "Set to true to run in foreground", 
+    "-D", 
+    :type => :boolean, :dynamic => false, :mandatory => true, :default => true)
+  app.defProperty(
+    "config", 
+    "Path to the config file to use", 
+    "-f", 
+    :type => :string, :dynamic => false, :mandatory => true, :default => '/etc/lighttpd/lighttpd.conf')
+end

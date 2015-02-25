@@ -27,7 +27,7 @@ defApplication('web_redirector') do |app|
   app.defProperty(
     "host", 
     "Address to listen to", 
-    "", 
+    "-o", 
     :order => 1, :type => :string, :dynamic => false, :mandatory => true, :default => 'localhost')
   app.defProperty(
     "rackapp", 

@@ -6,7 +6,7 @@ require 'yaml'
 class Redirector
 
   PREFIX = "net_"
-  @@config = YAML::load(File.open('config.yaml'))
+  @@config = YAML::load(File.open('/root/web-redirector/config.yaml'))
 
   def self.config
     @@config

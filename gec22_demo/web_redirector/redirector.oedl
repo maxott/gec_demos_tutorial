@@ -1,0 +1,33 @@
+# Copyright (c) 2012 National ICT Australia Limited (NICTA).
+# This software may be used and distributed solely under the terms of the MIT license (License).
+# You should find a copy of the License in LICENSE.TXT or at http://opensource.org/licenses/MIT.
+# By downloading or using this software you accept the terms and the liability disclaimer in the License.
+
+# This is the OMF6 Application Definition for the OML-Instrumented VLC app,
+# which was contributed by NYPoly [1]. The OML Measurement Point described in 
+# this app definition are the ones defined in the header file of the source code
+# available at [1].
+#
+# As described by the doc at [1], the current limitation of this OML-enabled
+# VLC app is that it cannot report at the same time both the 'usual' VLC stats
+# and the DASH-specific stats. Thus, you need to choose at runtime which set of
+# stats to enable. When used with OMF6 via this app definition, this selection
+# is done by setting/unsetting the 'enable_classic_measurement' property.
+#
+# [1] http://witestlab.poly.edu/site/page/oml-enabled-applications
+
+defApplication('web_redirector') do |app|
+  app.quiet = true
+  app.binary_path = "/root/web-redirector/redirector"
+  app.description = "Simple Ruby-based web-redirector" 
+  app.defProperty(
+    "host", 
+    "Address to listen to", 
+    "", 
+    :order => 1, :type => :string, :dynamic => false)
+  app.defProperty(
+    "config", 
+    "YAML-formated config string", 
+    "",
+    :order => 2, :type => :string, :dynamic => false)
+end

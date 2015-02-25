@@ -1,0 +1,5 @@
+#!/bin/bash
+HOST=$1
+CONFIG=$2
+echo -e $CONFIG >/root/web-redirector/config.yaml
+rackup -o $HOST config.ru

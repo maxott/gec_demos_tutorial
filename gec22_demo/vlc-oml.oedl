@@ -44,7 +44,7 @@ defApplication('vlc') do |app|
     "quiet", 
     "Remove all outputs on standard out", 
     "-q", 
-    :type => :string, :dynamic => false, :mandatory => true, :default => 'dummy')
+    :type => :boolean, :dynamic => false, :default => false)
 
 
   app.defMeasurement('audio') do |mp|

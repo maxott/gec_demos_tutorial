@@ -17,7 +17,7 @@
 # [1] http://witestlab.poly.edu/site/page/oml-enabled-applications
 
 defApplication('vlc') do |app|
-  #app.quiet = true
+  app.quiet = true
   app.binary_path = "/usr/bin/vlc"
   app.description = "OML-Instrumented VLC multimedia player and streamer" 
   app.defProperty(

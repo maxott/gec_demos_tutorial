@@ -1,0 +1,92 @@
+# Copyright (c) 2012 National ICT Australia Limited (NICTA).
+# This software may be used and distributed solely under the terms of the MIT license (License).
+# You should find a copy of the License in LICENSE.TXT or at http://opensource.org/licenses/MIT.
+# By downloading or using this software you accept the terms and the liability disclaimer in the License.
+
+# This is the OMF6 Application Definition for the OML-Instrumented VLC app,
+# which was contributed by NYPoly [1]. The OML Measurement Point described in 
+# this app definition are the ones defined in the header file of the source code
+# available at [1].
+#
+# As described by the doc at [1], the current limitation of this OML-enabled
+# VLC app is that it cannot report at the same time both the 'usual' VLC stats
+# and the DASH-specific stats. Thus, you need to choose at runtime which set of
+# stats to enable. When used with OMF6 via this app definition, this selection
+# is done by setting/unsetting the 'enable_classic_measurement' property.
+#
+# [1] http://witestlab.poly.edu/site/page/oml-enabled-applications
+
+defApplication('vlc') do |app|
+  app.quiet = true
+  app.binary_path = "/usr/bin/vlc"
+  app.description = "OML-Instrumented VLC multimedia player and streamer" 
+  app.defProperty(
+    "input", 
+    "Stream input (e.g. file or network address)", 
+    "", 
+    :type => :string, :dynamic => false)
+  app.defProperty(
+    "enable_classic_measurement", 
+    "Set to true to enable classic VLC Measurement, otherwise enable the DASH-specific VLC stats (default: false). Both cannot run at the same time http://witestlab.poly.edu/repos/omlapps/vlc/README.txt", 
+    "--extraintf omlstats", 
+    :type => :boolean, :dynamic => false, :mandatory => true, :default => false)
+  app.defProperty(
+    "mintf", 
+    "The main interface used by VLC", 
+    "-I", 
+    :type => :string, :dynamic => false, :mandatory => true, :default => 'dummy')
+  app.defProperty(
+    "vintf", 
+    "The video output method used by VLC", 
+    "-V", 
+    :type => :string, :dynamic => false, :mandatory => true, :default => 'dummy')
+   app.defProperty(
+    "quiet", 
+    "Remove all outputs on standard out", 
+    "-q", 
+    :type => :string, :dynamic => false, :mandatory => true, :default => 'dummy')
+
+
+  app.defMeasurement('audio') do |mp|
+    mp.defMetric('i_decoded_audio_blocks',:int32)
+    mp.defMetric('i_played_audio_buffers',:int32)
+    mp.defMetric('i_lost_audio_buffers',:int32)
+  end
+
+  app.defMeasurement('video') do |mp|
+    mp.defMetric('i_decoded_video_blocks',:int32)
+    mp.defMetric('i_played_video_frames',:int32)
+    mp.defMetric('i_lost_video_frames',:int32)
+  end
+
+  app.defMeasurement('input') do |mp|
+    mp.defMetric('i_read_packets',:int32)
+    mp.defMetric('i_read_bytes',:int32)
+    mp.defMetric('f_input_bitrate',:double)
+    mp.defMetric('i_demux_read_bytes',:int32)
+    mp.defMetric('f_demux_bitrate',:double)
+    mp.defMetric('i_demux_corrupted',:int32)
+    mp.defMetric('i_demux_discontinuity',:int32)
+  end
+
+  app.defMeasurement('output') do |mp|
+    mp.defMetric('i_sent_packets',:int32)
+    mp.defMetric('i_sent_bytes',:int32)
+    mp.defMetric('f_send_bitrate',:double)
+  end
+
+  app.defMeasurement('dashRateAdaptation') do |mp|
+    mp.defMetric('chosenRate_bps',:int)
+    mp.defMetric('empiricalRate_bps',:int)
+    mp.defMetric('decisionRate_bps',:int)
+    mp.defMetric('buffer_percent',:int)
+  end
+  
+  app.defMeasurement('dashDlSession') do |mp|
+    mp.defMetric('chunkCount',:int)
+    mp.defMetric('readSession_B',:int)
+    mp.defMetric('readChunk_B',:int)
+    mp.defMetric('timeSession_s',:float)
+    mp.defMetric('timeChunk_s',:float)
+  end
+end

@@ -90,3 +90,10 @@ defApplication('vlc') do |app|
     mp.defMetric('timeChunk_s',:float)
   end
 end
+
+# Small hack: VLC sometimes do not exist when receiving SIGTERM
+# even after a very long period of time... here we make sure that it stops!
+defApplication('kill_vlc') do |app|
+  app.quiet = true
+  app.binary_path = "/usr/bin/killall vlc"
+end

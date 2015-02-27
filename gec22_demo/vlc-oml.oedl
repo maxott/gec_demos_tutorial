@@ -95,5 +95,5 @@ end
 # even after a very long period of time... here we make sure that it stops!
 defApplication('kill_vlc') do |app|
   app.quiet = true
-  app.binary_path = "/usr/bin/killall vlc"
+  app.binary_path = "/usr/bin/killall -s 9 vlc"
 end

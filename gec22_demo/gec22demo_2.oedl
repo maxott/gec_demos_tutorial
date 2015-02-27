@@ -1,0 +1,182 @@
+# Load the external OMF6 Application Definition that we need
+loadOEDL('https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec22_demo/vlc-oml.oedl')
+loadOEDL('https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec22_demo/web_redirector/redirector.oedl')
+loadOEDL('https://raw.githubusercontent.com/mytestbed/gec_demos_tutorial/master/gec22_demo/lighttpd.oedl')
+
+# Define some parameters
+
+# This should be the Address to the Web Redirector!
+defProperty('redirector_address', '192.86.139.71', 'URL for the video to play')
+defProperty('redirector_port', '9292', 'URL for the video to play')
+
+# The YAML Configuration for the Web Redirector
+# Note: could be turned into an experiment property if needed...
+# NO CIDR NOTATION SUPPORT!!!
+# Convention: 
+# - net_A_B_C_D for the network IP address A.B.C.D
+# - net_A_B_C for the network IP address A.B.C.0
+# - net_A_B for the network IP address A.B
+# - net_A for the network IP address A
+# - default for everything else
+#
+redirect_configuration = 
+<<-TEXT
+"net_10_15:
+  status: 303
+  location: 'http://www.nicta.com.au'
+
+net_203_143_174:
+  status: 303
+  location: 'http://www.w3.org'
+
+default:
+  status: 303
+  location: 'http://192.86.139.71/video/bunny_2s/BigBuckBunny_gec22.mpd'"
+TEXT
+
+
+# Get the list of available resources for this experiment and separate them
+#
+# TODO: when this is finalised add below the steps to extract from the list of
+# resources:
+# - the ones that will be used as "Video Players" and divide them in multiple groups
+# - the one to be used as the "Redirect Entity"
+# - the ones that will be used as "Content Providers"
+#
+# available_resources = getResources()
+
+# HACK: As the function of getting resources automatically for this demo is not
+# yet finalised, do the following resource assignment and separation here for 
+# testing purpose
+
+video_players = [
+  ['a1','b1','c1'],
+  ['a2','b2','c2'],
+  ['a3','b3','c3'],
+  ['a4','b4','c4']
+]
+
+redirect_entity = 'x'
+
+content_prodivers = [ 'y' ]
+
+video_players.each_index do |i|
+  defGroup("video_player_group_#{i}", *video_players[i]) do |group|
+    group.addApplication('vlc') do |app|
+      app.setProperty('input', "http://#{prop.redirector_address}:#{prop.redirector_port}")
+      app.measure('dashDlSession', :samples =>1)
+      app.measure('dashRateAdaptation', :samples =>1)
+    end
+  end
+end
+
+defGroup('redirector_group', redirect_entity) do |group|
+  group.addApplication('web_redirector_config') do |app|
+    app.setProperty('config', redirect_configuration)
+  end
+  group.addApplication("web_redirector") do |app|
+    app.setProperty('host', prop.redirector_address)
+  end
+end
+
+defGroup('provider_group', *content_prodivers) do |group|
+  group.addApplication('lighttpd') 
+end
+
+# Small hack: VLC sometimes do not exist when receiving SIGTERM
+# even after a very long period of time... here we make sure that it stops!
+defGroup('all_video_players', *video_players) do |group|
+  group.addApplication('kill_vlc') 
+end
+  
+onEvent(:ALL_UP) do
+ 
+  fullhouse_duration = 60 # [s]
+  t0 = 5 # [s]
+  t_interval_between_players = 20 # [s]
+  t1 = t0 + (t_interval_between_players * (video_players.length + 1)) + fullhouse_duration
+
+  after t0 do
+    info(" ------ Start Content Providers")
+    group('provider_group').startApplications
+  end
+
+  after t0+5 do
+    info(" ------ Configure Web Redirector")
+    group('redirector_group').startApplication('web_redirector_config_cxt_0')
+  end
+
+  after t0+10 do
+    info(" ------ Start Web Redirector")
+    group('redirector_group').startApplication('web_redirector_cxt_0')
+  end
+
+  video_players.each_index do |i|
+    after t0 + t_interval_between_players*(i+1) do
+      info(" ------ Start Video Player Group #{i}")
+      group("video_player_group_#{i}").startApplications
+    end
+  end
+
+  after t1 do
+    info(" ------ Now Stop the experiment")
+    # Give the chance to most players to stop gracefully with SIGTERM
+    video_players.each_index do |i|
+      group("video_player_group_#{i}").stopApplications
+    end
+    group('redirector_group').stopApplications
+    group('provider_group').stopApplications
+  end
+  
+  after t1+5 do
+    # Make sure that any lingering VLC instances are stopped!
+    group('all_video_players').startApplications
+    Experiment.done
+  end 
+end
+  
+defGraph 'DashRate1' do |g|
+  g.ms('dashRateAdaptation').select {[:oml_ts_client, :chosenRate_bps, :oml_sender_id]}
+  g.caption "DASH Selected Rate"
+  g.type 'line_chart3'
+  g.mapping :x_axis => :oml_ts_client, :y_axis => :chosenRate_bps, :group_by => :oml_sender_id
+  g.xaxis :legend => 'time [s]'
+  g.yaxis :legend => 'DASH Selected Rate [b]', :ticks => {:format => 's'}
+end
+  
+defGraph 'DashRate2' do |g|
+  g.ms('dashRateAdaptation').select {[:oml_ts_client, :empiricalRate_bps, :oml_sender_id]}
+  g.caption "DASH Measured Rate"
+  g.type 'line_chart3'
+  g.mapping :x_axis => :oml_ts_client, :y_axis => :empiricalRate_bps, :group_by => :oml_sender_id
+  g.xaxis :legend => 'time [s]'
+  g.yaxis :legend => 'DASH Measured Rate [b]', :ticks => {:format => 's'}
+end
+
+  
+defGraph 'DashRate3' do |g|
+  g.ms('dashRateAdaptation').select {[:oml_ts_client, :buffer_percent, :oml_sender_id]}
+  g.caption "DASH Buffer Percentage"
+  g.type 'line_chart3'
+  g.mapping :x_axis => :oml_ts_client, :y_axis => :buffer_percent, :group_by => :oml_sender_id
+  g.xaxis :legend => 'time [s]'
+  g.yaxis :legend => 'DASH Buffer Percentage [%]', :ticks => {:format => 's'}
+end
+
+defGraph 'DashSession1' do |g|
+  g.ms('dashDlSession').select {[:oml_ts_client, :readSession_B, :oml_sender_id]}
+  g.caption "DASH Download Total"
+  g.type 'line_chart3'
+  g.mapping :x_axis => :oml_ts_client, :y_axis => :readSession_B, :group_by => :oml_sender_id
+  g.xaxis :legend => 'time [s]'
+  g.yaxis :legend => 'DASH Download Total [B]', :ticks => {:format => 's'}
+end
+
+# defGraph 'DashRate4' do |g|
+#   g.ms('dashRateAdaptation').select {[:oml_ts_client, :decisionRate_bps, :oml_sender_id]}
+#   g.caption "DASH Decision Rate"
+#   g.type 'line_chart3'
+#   g.mapping :x_axis => :oml_ts_client, :y_axis => :decisionRate_bps, :group_by => :oml_sender_id
+#   g.xaxis :legend => 'time [s]'
+#   g.yaxis :legend => 'DASH Decision Rate [b]', :ticks => {:format => 's'}
+# end

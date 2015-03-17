@@ -4,7 +4,7 @@
 # By downloading or using this software you accept the terms and the liability disclaimer in the License.
 
 # This is the OMF6 Application Definition for the OML-Instrumented VLC app,
-# which was contributed by NYPoly [1]. The OML Measurement Point described in 
+# which was contributed by NYPoly [1]. The OML Measurement Point described in
 # this app definition are the ones defined in the header file of the source code
 # available at [1].
 #
@@ -18,32 +18,33 @@
 
 defApplication('vlc') do |app|
   app.quiet = true
+  app.silent = true
   app.binary_path = "/usr/bin/vlc"
-  app.description = "OML-Instrumented VLC multimedia player and streamer" 
+  app.description = "OML-Instrumented VLC multimedia player and streamer"
   app.defProperty(
-    "input", 
-    "Stream input (e.g. file or network address)", 
-    "", 
+    "input",
+    "Stream input (e.g. file or network address)",
+    "",
     :type => :string, :dynamic => false)
   app.defProperty(
-    "enable_classic_measurement", 
-    "Set to true to enable classic VLC Measurement, otherwise enable the DASH-specific VLC stats (default: false). Both cannot run at the same time http://witestlab.poly.edu/repos/omlapps/vlc/README.txt", 
-    "--extraintf omlstats", 
+    "enable_classic_measurement",
+    "Set to true to enable classic VLC Measurement, otherwise enable the DASH-specific VLC stats (default: false). Both cannot run at the same time http://witestlab.poly.edu/repos/omlapps/vlc/README.txt",
+    "--extraintf omlstats",
     :type => :boolean, :dynamic => false, :mandatory => true, :default => false)
   app.defProperty(
-    "mintf", 
-    "The main interface used by VLC", 
-    "-I", 
+    "mintf",
+    "The main interface used by VLC",
+    "-I",
     :type => :string, :dynamic => false, :mandatory => true, :default => 'dummy')
   app.defProperty(
-    "vintf", 
-    "The video output method used by VLC", 
-    "-V", 
+    "vintf",
+    "The video output method used by VLC",
+    "-V",
     :type => :string, :dynamic => false, :mandatory => true, :default => 'dummy')
    app.defProperty(
-    "quiet", 
-    "Remove all outputs on standard out", 
-    "-q", 
+    "quiet",
+    "Remove all outputs on standard out",
+    "-q",
     :type => :boolean, :dynamic => false, :default => false)
 
 
@@ -81,7 +82,7 @@ defApplication('vlc') do |app|
     mp.defMetric('decisionRate_bps',:int)
     mp.defMetric('buffer_percent',:int)
   end
-  
+
   app.defMeasurement('dashDlSession') do |mp|
     mp.defMetric('chunkCount',:int)
     mp.defMetric('readSession_B',:int)

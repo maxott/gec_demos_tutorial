@@ -1,0 +1,16 @@
+# Copyright (c) 2015 National ICT Australia Limited (NICTA).
+# This software may be used and distributed solely under the terms of the MIT license (License).
+# You should find a copy of the License in LICENSE.TXT or at http://opensource.org/licenses/MIT.
+# By downloading or using this software you accept the terms and the liability disclaimer in the License.
+
+# This is the OMF6 Application Definition for a simple basic fix traffic shaper
+
+defApplication('shaper') do |app|
+  app.quiet = true
+  app.silent = true
+  app.binary_path = "/sbin/tc qdisc del dev eth0 root ; "+
+    "/sbin/tc qdisc add dev eth0 root handle 1: cbq avpkt 1000 bandwidth 1mbit ; "+
+    "/sbin/tc class add dev eth0 parent 1: classid 1:1 cbq rate 100kbit allot 1500 prio 5 bounded isolated ; "+
+    "/sbin/tc filter add dev eth0  parent 1: protocol ip prio 16 u32 match ip dst 192.86.139.71 flowid 1:1 ; "+
+    "/sbin/tc filter add dev eth0  parent 1: protocol ip prio 16 u32 match ip src 192.86.139.71 flowid 1:1 ; "
+end

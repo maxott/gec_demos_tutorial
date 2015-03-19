@@ -22,7 +22,7 @@ end
 
 defApplication('web_redirector') do |app|
   app.quiet = true
-  app.binary_path = "/usr/local/bin/rackup"
+  app.binary_path = "/usr/bin/killall -s 9 rackup ; /usr/local/bin/rackup"
   app.description = "Simple Ruby-based web-redirector" 
   app.defProperty(
     "host", 

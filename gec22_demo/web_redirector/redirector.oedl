@@ -5,33 +5,33 @@
 
 # This is the OMF6 Application Definition for the simple Ruby-based web redirector
 #
-# First run the 'web_redirector_config' to write the config yaml file for the 
+# First run the 'web_redirector_config' to write the config yaml file for the
 # Rack application. Then run 'web_redirector' to start the Rack application which
 # does the redirection
 
 defApplication('web_redirector_config') do |app|
   app.quiet = true
   app.binary_path = "/root/web-redirector/configure"
-  app.description = "Configuration for a Simple Ruby-based web-redirector" 
+  app.description = "Configuration for a Simple Ruby-based web-redirector"
   app.defProperty(
-    "config", 
-    "YAML-formated config string", 
+    "config",
+    "YAML-formated config string",
     "",
-    :type => :string, :dynamic => false)
+    :type => :string, :dynamic => true)
 end
 
 defApplication('web_redirector') do |app|
   app.quiet = true
   app.binary_path = "/usr/bin/killall -s 9 rackup ; /usr/local/bin/rackup"
-  app.description = "Simple Ruby-based web-redirector" 
+  app.description = "Simple Ruby-based web-redirector"
   app.defProperty(
-    "host", 
-    "Address to listen to", 
-    "-o", 
-    :order => 1, :type => :string, :dynamic => false, :mandatory => true, :default => 'localhost')
+    "host",
+    "Address to listen to",
+    "-o",
+    :order => 1, :type => :string, :dynamic => true, :mandatory => true, :default => 'localhost')
   app.defProperty(
-    "rackapp", 
-    "Path to the redirector Rack Application", 
+    "rackapp",
+    "Path to the redirector Rack Application",
     "",
-    :order => 2, :type => :string, :dynamic => false, :mandatory => true, :default => '/root/web-redirector/config.ru')
+    :order => 2, :type => :string, :dynamic => true, :mandatory => true, :default => '/root/web-redirector/config.ru')
 end

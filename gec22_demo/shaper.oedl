@@ -13,6 +13,6 @@ defApplication('shaper') do |app|
     "/sbin/tc class add dev eth0 parent 1: classid 1:1 cbq rate 100kbit allot 1500 prio 5 bounded isolated ; "+
     "/sbin/tc filter add dev eth0  parent 1: protocol ip prio 16 u32 match ip dst 192.86.139.71 flowid 1:1 ; "+
     "/sbin/tc filter add dev eth0  parent 1: protocol ip prio 16 u32 match ip src 192.86.139.71 flowid 1:1 ; "+
-    "/sbin/tc filter add dev eth0  parent 1: protocol ip prio 16 u32 match ip dst 193.190.127.241 flowid 1:1 ; "+
-    "/sbin/tc filter add dev eth0  parent 1: protocol ip prio 16 u32 match ip src 193.190.127.241 flowid 1:1 "
+    "/sbin/tc filter add dev eth0  parent 1: protocol ip prio 16 u32 match ip dst 193.190.127.246 flowid 1:1 ; "+
+    "/sbin/tc filter add dev eth0  parent 1: protocol ip prio 16 u32 match ip src 193.190.127.246 flowid 1:1 "
 end

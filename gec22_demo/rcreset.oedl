@@ -8,5 +8,5 @@
 defApplication('rcreset') do |app|
   app.quiet = true
   app.silent = true
-  app.binary_path = "/usr/sbin/service omf_rc restart"
+  app.binary_path = "/usr/bin/killall -s 9 ruby ; /usr/sbin/service omf_rc start"
 end
